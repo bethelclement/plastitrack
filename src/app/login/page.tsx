@@ -15,7 +15,7 @@ export default function LoginPage() {
     e.preventDefault();
     setLoading(true);
     setError(null);
-    
+
     try {
       const { error } = await supabase.auth.signInWithPassword({
         email,
@@ -116,7 +116,7 @@ export default function LoginPage() {
         <div className="mt-6 text-center text-sm">
           <span className="text-gray-600">Don't have an account? </span>
           <Link
-            href="/signup"
+            href="/register"
             className="font-medium text-green-600 hover:text-green-500"
           >
             Create an account
