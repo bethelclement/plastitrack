@@ -105,17 +105,64 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Funding & Project Context aligned to SGP 2.0 */}
-      <section className="bg-gray-50 py-16 border-t border-gray-100">
+      {/* Behavioral Change & Community Impact */}
+      <section className="bg-green-900 py-16 text-white text-center sm:text-left relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] mix-blend-overlay"></div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl mb-6">
+                Driving Real Behavioural Change
+              </h2>
+              <p className="text-lg text-green-100 mb-8 max-w-lg">
+                We believe that structured incentives and visible systems change habits. We are moving communities from occasional cleanups to daily circular systems.
+              </p>
+              <ul className="space-y-4 text-green-50 tracking-wide font-medium">
+                <li className="flex items-center">
+                  <span className="w-8 h-8 rounded-full bg-green-800 flex items-center justify-center mr-3 shadow-inner text-green-300">✓</span>
+                  School Eco Clubs & Competitions
+                </li>
+                <li className="flex items-center">
+                  <span className="w-8 h-8 rounded-full bg-green-800 flex items-center justify-center mr-3 shadow-inner text-green-300">✓</span>
+                  Leaderboards by Community & School
+                </li>
+                <li className="flex items-center">
+                  <span className="w-8 h-8 rounded-full bg-green-800 flex items-center justify-center mr-3 shadow-inner text-green-300">✓</span>
+                  Weekly Community Impact Posts
+                </li>
+              </ul>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="bg-green-800/50 p-6 rounded-2xl border border-green-700/50 backdrop-blur-md transition-transform hover:-translate-y-1">
+                <h4 className="text-4xl font-black text-white mb-2">3k+</h4>
+                <p className="text-green-200 text-sm uppercase tracking-wider font-semibold">Trained Individuals</p>
+              </div>
+              <div className="bg-green-800/50 p-6 rounded-2xl border border-green-700/50 backdrop-blur-md transition-transform hover:-translate-y-1 mt-8">
+                <h4 className="text-4xl font-black text-white mb-2">60%</h4>
+                <p className="text-green-200 text-sm uppercase tracking-wider font-semibold">Income Transition</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Funding & Partners */}
+      <section className="bg-gray-50 py-20 border-t border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-sm font-semibold tracking-wide text-gray-500 uppercase">
-            A Practical Case Study in Circular Innovation
+          <h2 className="text-sm font-bold tracking-widest text-primary uppercase mb-8">
+            Supported By Our Esteemed Partners
           </h2>
-          <p className="mt-2 text-xl font-medium text-gray-900">
-            Digital Tracking and Youth/Women Led Plastic Recovery in Abuja
-          </p>
-          <p className="mt-4 max-w-2xl mx-auto text-base text-gray-500">
-            This project aligns with Nigeria’s circular economy roadmap and NDC 3.0 waste-sector commitments.
+          <div className="flex flex-wrap justify-center gap-12 md:gap-20 items-center opacity-80">
+            {["SGP Nigeria", "GEF", "UNDP", "Digital Peers International", "Plastic Waste Solutions 2.0"].map((partner) => (
+              <div key={partner} className="flex flex-col items-center group">
+                <div className="w-full flex justify-center text-xl font-black tracking-tight text-gray-400 group-hover:text-gray-900 transition-colors duration-300">
+                  {partner.toUpperCase()}
+                </div>
+              </div>
+            ))}
+          </div>
+          <p className="mt-12 max-w-2xl mx-auto text-base text-gray-500 font-medium">
+            Aligning with Nigeria’s circular economy roadmap and NDC 3.0 waste-sector commitments.
           </p>
         </div>
       </section>
