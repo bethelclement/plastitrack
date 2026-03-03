@@ -17,6 +17,25 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "PlastiTrack - Clean Plastic Recovery & Upcycling",
   description: "A community plastic recovery system built in Abuja. We run women led collection hubs, track plastic recovery with public data, and convert waste into durable products.",
+  openGraph: {
+    type: "website",
+    url: "https://plastitrack.vercel.app",
+    title: "PlastiTrack - Clean Plastic Recovery & Upcycling",
+    description: "A community plastic recovery system built in Abuja. We run women led collection hubs, track plastic recovery with public data, and convert waste into durable products.",
+    siteName: "PlastiTrack",
+    images: [{
+      url: "/og-image.png",
+      width: 1200,
+      height: 630,
+      alt: "PlastiTrack Logo"
+    }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "PlastiTrack - Clean Plastic Recovery & Upcycling",
+    description: "A community plastic recovery system built in Abuja. We run women led collection hubs, track plastic recovery with public data, and convert waste into durable products.",
+    images: ["/og-image.png"]
+  }
 };
 
 export default function RootLayout({
