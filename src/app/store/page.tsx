@@ -57,7 +57,7 @@ export default function StorePage() {
                     {products.map((product) => (
                         <div key={product.id} className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col">
                             <div className="h-48 bg-gray-100 flex items-center justify-center relative">
-                                <ShoppingBag className="w-16 h-16 text-gray-300" />
+                                <img src="/revamp-logo.png" alt="ReVamp Store Logo" className="w-24 h-24 object-contain opacity-50 mix-blend-multiply" />
                                 <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-bold text-gray-900 shadow-sm">
                                     ₦{product.price_naira.toLocaleString()}
                                 </div>
