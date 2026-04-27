@@ -29,9 +29,10 @@ export default function TeamPage() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
                 <div className="text-center mb-16">
                     <h1 className="text-4xl font-extrabold text-gray-900 tracking-tight">Meet the Team</h1>
-                    <p className="mt-4 text-xl text-gray-500 max-w-3xl mx-auto">
+                    <p className="mt-4 text-xl text-gray-500 max-w-3xl mx-auto mb-10">
                         The dedicated BES Leads driving the PlastiTrack mission forward.
                     </p>
+                    <img src="/images/team-photo.jpg" alt="Team BES PlastiTrack" className="w-full max-w-4xl mx-auto rounded-2xl shadow-lg object-cover h-96 mb-8" />
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">

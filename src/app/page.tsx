@@ -22,6 +22,20 @@ export default function Home() {
               View Impact Dashboard
             </Link>
           </div>
+          </div>
+          
+          {/* Upcoming Event Promo */}
+          <div className="mt-16 mx-auto max-w-4xl bg-gray-50 rounded-2xl p-6 border border-gray-100 shadow-sm flex flex-col md:flex-row items-center gap-8 text-left">
+            <img src="/images/waste-2-wonder.jpg" alt="Waste 2 Wonder Event" className="w-full md:w-64 rounded-xl object-cover shadow-md" />
+            <div>
+              <span className="text-sm font-bold tracking-widest text-primary uppercase mb-2 block">Upcoming Event</span>
+              <h3 className="text-2xl font-black text-gray-900 mb-2">Earth Day: Waste 2 Wonder</h3>
+              <p className="text-gray-600 mb-4 font-medium">Join us this Earth Day as we demonstrate the transformation of pure waste into premium products. See the circular economy in action.</p>
+              <Link href="/about" className="text-primary font-bold hover:underline inline-flex items-center">
+                Learn more about our methodology <ArrowRight className="ml-1 w-4 h-4" />
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -133,11 +147,11 @@ export default function Home() {
               </ul>
             </div>
             <div className="grid grid-cols-2 gap-4">
-              <div className="bg-green-800/50 p-6 rounded-2xl border border-green-700/50 backdrop-blur-md transition-transform hover:-translate-y-1">
+              <div className="bg-green-800 p-6 rounded-2xl border border-green-700 transition-transform hover:-translate-y-1">
                 <h4 className="text-4xl font-black text-white mb-2">3k+</h4>
                 <p className="text-green-200 text-sm uppercase tracking-wider font-semibold">Trained Individuals</p>
               </div>
-              <div className="bg-green-800/50 p-6 rounded-2xl border border-green-700/50 backdrop-blur-md transition-transform hover:-translate-y-1 mt-8">
+              <div className="bg-green-800 p-6 rounded-2xl border border-green-700 transition-transform hover:-translate-y-1 mt-8">
                 <h4 className="text-4xl font-black text-white mb-2">60%</h4>
                 <p className="text-green-200 text-sm uppercase tracking-wider font-semibold">Income Transition</p>
               </div>

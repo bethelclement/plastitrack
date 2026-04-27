@@ -4,17 +4,17 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContaine
 import { DownloadCloud, Info, TrendingUp, Users, Award, ShieldAlert } from 'lucide-react';
 
 const mockWeeklyData = [
-    { name: 'Week 1', PET: 400, HDPE: 240, PP: 240, LDPE: 100 },
-    { name: 'Week 2', PET: 300, HDPE: 139, PP: 221, LDPE: 120 },
-    { name: 'Week 3', PET: 200, HDPE: 980, PP: 229, LDPE: 140 },
-    { name: 'Week 4', PET: 278, HDPE: 390, PP: 200, LDPE: 110 },
-    { name: 'Week 5', PET: 189, HDPE: 480, PP: 218, LDPE: 130 },
+    { name: 'Week 1', PET: 4200, HDPE: 2450, PP: 1240, LDPE: 800 },
+    { name: 'Week 2', PET: 4500, HDPE: 2800, PP: 1350, LDPE: 920 },
+    { name: 'Week 3', PET: 3900, HDPE: 3100, PP: 1500, LDPE: 880 },
+    { name: 'Week 4', PET: 4800, HDPE: 3400, PP: 1650, LDPE: 1050 },
+    { name: 'Week 5', PET: 5200, HDPE: 3800, PP: 1800, LDPE: 1100 },
 ];
 
 const mockPieData = [
-    { name: 'PET', value: 45 },
-    { name: 'HDPE', value: 30 },
-    { name: 'PP', value: 15 },
+    { name: 'PET', value: 43 },
+    { name: 'HDPE', value: 31 },
+    { name: 'PP', value: 16 },
     { name: 'LDPE', value: 8 },
     { name: 'Caps/Others', value: 2 },
 ];
@@ -48,9 +48,9 @@ export default function Dashboard() {
                 {/* Top Level Metrics with 3D Float Effect */}
                 <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 mb-10">
                     {[
-                        { label: "Total Recovered", value: "3,450 kg", desc: "Since Project Launch", icon: <TrendingUp className="w-6 h-6 text-green-400" />, color: "from-green-50 to-white", textColor: "text-green-600" },
-                        { label: "Households Registered", value: "412", desc: "Targeting 500 in 5 weeks", icon: <Users className="w-6 h-6 text-blue-400" />, color: "from-blue-50 to-white", textColor: "text-blue-600" },
-                        { label: "Rewards Issued", value: "₦145,000", desc: "Cash credits & vouchers", icon: <Award className="w-6 h-6 text-yellow-500" />, color: "from-yellow-50 to-white", textColor: "text-yellow-600" },
+                        { label: "Total Recovered", value: "48,640 kg", desc: "Since Project Launch", icon: <TrendingUp className="w-6 h-6 text-green-400" />, color: "from-green-50 to-white", textColor: "text-green-600" },
+                        { label: "Households Registered", value: "1,245", desc: "Across Kuchingoro & Durumi", icon: <Users className="w-6 h-6 text-blue-400" />, color: "from-blue-50 to-white", textColor: "text-blue-600" },
+                        { label: "Rewards Issued", value: "₦2.4M+", desc: "Cash credits & vouchers", icon: <Award className="w-6 h-6 text-yellow-500" />, color: "from-yellow-50 to-white", textColor: "text-yellow-600" },
                     ].map((metric, i) => (
                         <div key={i} className={`bg-gradient-to-br ${metric.color} overflow-hidden rounded-2xl border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-all duration-300 transform hover:-translate-y-1`}>
                             <div className="px-6 py-6 relative">
