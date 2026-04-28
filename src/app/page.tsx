@@ -81,15 +81,42 @@ export default function Home() {
       {/* Successful Projects */}
       <section className="bg-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-5xl bg-gray-50 rounded-3xl p-8 border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex flex-col md:flex-row items-center gap-10 text-left transition-transform hover:-translate-y-1">
-            <img src="/images/waste-2-wonder.jpg" alt="Waste 2 Wonder Project" className="w-full md:w-80 rounded-2xl object-cover shadow-lg" />
-            <div>
-              <span className="text-sm font-bold tracking-widest text-green-600 uppercase mb-2 block bg-green-50 w-max px-3 py-1 rounded-full">Successful Projects</span>
-              <h3 className="text-3xl font-black text-gray-900 mb-3">Earth Day: Waste 2 Wonder (April 2026)</h3>
-              <p className="text-gray-600 mb-6 font-medium text-lg leading-relaxed">Our most recent successful project demonstrated the live transformation of pure waste into premium products for the DPI-SGP community. A massive milestone for circular economy visibility.</p>
-              <Link href="/about" className="text-primary font-bold text-lg hover:text-green-700 transition-colors inline-flex items-center group">
-                See our full project portfolio <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </Link>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-extrabold text-gray-900">Successful Projects & Milestones</h2>
+            <p className="mt-4 max-w-2xl mx-auto text-xl text-gray-500">
+              Our journey of sensitization, partnership, and recognition in the circular economy space.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* Project 1 */}
+            <div className="bg-gray-50 rounded-3xl p-8 border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex flex-col gap-6 text-left transition-transform hover:-translate-y-1">
+              <img src="/images/waste-2-wonder.jpg" alt="Waste 2 Wonder Project" className="w-full h-48 rounded-2xl object-cover shadow-lg" />
+              <div>
+                <span className="text-sm font-bold tracking-widest text-green-600 uppercase mb-2 block bg-green-50 w-max px-3 py-1 rounded-full">World Earth Day 2026</span>
+                <h3 className="text-2xl font-black text-gray-900 mb-3">Partnered with Climate Teen Hub</h3>
+                <p className="text-gray-600 font-medium leading-relaxed">
+                  We commemorated World Earth Day by teaching teens from multiple countries (majority from Nigeria) how to turn waste into art, focusing heavily on PET bottles to combat pollution.
+                </p>
+              </div>
+            </div>
+
+            {/* Project 2 */}
+            <div className="bg-gray-50 rounded-3xl p-8 border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex flex-col gap-6 text-left transition-transform hover:-translate-y-1 justify-between">
+              <div>
+                <span className="text-sm font-bold tracking-widest text-blue-600 uppercase mb-2 block bg-blue-50 w-max px-3 py-1 rounded-full">Sensitization</span>
+                <h3 className="text-2xl font-black text-gray-900 mb-3">Preteen & Teen Creative Upcycling</h3>
+                <p className="text-gray-600 font-medium leading-relaxed mb-6">
+                  For our initial phase, we targeted preteens and teens to raise awareness on the environmental impact of plastic waste. We trained them on creative upcycling (turning plastic into wall-decors and accessories) so they can see firsthand how their choices clean the environment and beautify their rooms.
+                </p>
+              </div>
+              <div className="border-t border-gray-200 pt-6">
+                <span className="text-sm font-bold tracking-widest text-purple-600 uppercase mb-2 block bg-purple-50 w-max px-3 py-1 rounded-full">Media & Recognition</span>
+                <ul className="list-disc pl-5 text-gray-600 font-medium space-y-2">
+                  <li><strong>Award Nomination:</strong> Officially nominated for an environmental impact award.</li>
+                  <li><strong>Kiss FM Feature:</strong> Our Assistant Team Lead was invited by Kiss FM to discuss the vital work we do on national radio.</li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
