@@ -23,18 +23,7 @@ export default function Home() {
             </Link>
           </div>
           
-          {/* Upcoming Event Promo */}
-          <div className="mt-16 mx-auto max-w-4xl bg-gray-50 rounded-2xl p-6 border border-gray-100 shadow-sm flex flex-col md:flex-row items-center gap-8 text-left">
-            <img src="/images/waste-2-wonder.jpg" alt="Waste 2 Wonder Event" className="w-full md:w-64 rounded-xl object-cover shadow-md" />
-            <div>
-              <span className="text-sm font-bold tracking-widest text-primary uppercase mb-2 block">Upcoming Event</span>
-              <h3 className="text-2xl font-black text-gray-900 mb-2">Earth Day: Waste 2 Wonder</h3>
-              <p className="text-gray-600 mb-4 font-medium">Join us this Earth Day as we demonstrate the transformation of pure waste into premium products. See the circular economy in action.</p>
-              <Link href="/about" className="text-primary font-bold hover:underline inline-flex items-center">
-                Learn more about our methodology <ArrowRight className="ml-1 w-4 h-4" />
-              </Link>
-            </div>
-          </div>
+
         </div>
       </section>
 
@@ -43,9 +32,10 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-extrabold text-gray-900">What We Do</h2>
-            <p className="mt-4 max-w-2xl mx-auto text-xl text-gray-500">
+            <p className="mt-4 max-w-2xl mx-auto text-xl text-gray-500 mb-10">
               We collect and sort plastic by category at community hubs. We log every kilogram, publish weekly totals, and reward contributors through cash credits, vouchers, school support, or discounts on upcycled products.
             </p>
+            <img src="/images/team-photo.jpg" alt="Team BES PlastiTrack" className="w-full max-w-5xl mx-auto rounded-3xl shadow-xl object-cover h-[400px]" />
           </div>
 
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3 text-center">
@@ -83,6 +73,23 @@ export default function Home() {
               <p className="text-gray-500">
                 Hubs are operated by trained youth and women who earn from aggregation margins and upcycled product production.
               </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Successful Projects */}
+      <section className="bg-white py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-5xl bg-gray-50 rounded-3xl p-8 border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex flex-col md:flex-row items-center gap-10 text-left transition-transform hover:-translate-y-1">
+            <img src="/images/waste-2-wonder.jpg" alt="Waste 2 Wonder Project" className="w-full md:w-80 rounded-2xl object-cover shadow-lg" />
+            <div>
+              <span className="text-sm font-bold tracking-widest text-green-600 uppercase mb-2 block bg-green-50 w-max px-3 py-1 rounded-full">Successful Projects</span>
+              <h3 className="text-3xl font-black text-gray-900 mb-3">Earth Day: Waste 2 Wonder (April 2026)</h3>
+              <p className="text-gray-600 mb-6 font-medium text-lg leading-relaxed">Our most recent successful project demonstrated the live transformation of pure waste into premium products for the DPI-SGP community. A massive milestone for circular economy visibility.</p>
+              <Link href="/about" className="text-primary font-bold text-lg hover:text-green-700 transition-colors inline-flex items-center group">
+                See our full project portfolio <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </Link>
             </div>
           </div>
         </div>

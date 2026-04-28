@@ -8,8 +8,8 @@ export function Footer() {
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
                     <div className="col-span-1 md:col-span-1">
                         <Link href="/" className="flex items-center">
-                            <Leaf className="h-6 w-6 text-primary" />
-                            <span className="ml-2 font-bold text-lg text-primary">PlastiTrack</span>
+                            <img src="/plastitrackbes-logo.png" alt="PlastiTrackBES Logo" className="h-8 w-8 object-contain mr-2" />
+                            <span className="font-bold text-lg text-primary">PlastiTrackBES</span>
                         </Link>
                         <p className="mt-4 text-sm text-gray-500">
                             A community plastic recovery system in Abuja. Tracking waste, empowering women, and building a circular economy.
