@@ -30,11 +30,20 @@ style: |
 ---
 
 <!-- _class: bg-primary -->
+![w:150 center bg-white drop-shadow rounded](./public/images/bes-logo.jpg)
 # Plastics REIMAGINED 🌍
 ## Community Plastic Recovery & Digital Upcycling
 **Team BES PlastiTrack**
 _DPI-SGP 2.0 Innovation Challenge_
-_Aligning with SGP Nigeria, GEF, UNDP, and DPI_
+
+---
+
+## 🤝 Supported By Our Esteemed Partners
+Our project directly accelerates the mandates of our core funders and partners:
+- **Global Environment Facility (GEF):** Core Funder for grassroots sustainability.
+- **UNDP:** Aligning local circular economy efforts with global SDGs.
+- **SGP Nigeria:** Supporting community-based environmental initiatives.
+- **Digital Peers International (DPI):** Project Incubator driving the SGP 2.0 initiative.
 
 ---
 
@@ -44,7 +53,7 @@ _Aligning with SGP Nigeria, GEF, UNDP, and DPI_
 - **Kenneth Anietie Nyong** - Program Coordinator & Community Engagement
 - **Wakala Bilkisu** - Communications Lead & Store Operations
 
-![w:600 center shadow](./public/images/team-photo.jpg)
+![w:500 center shadow](./public/images/team-photo.jpg)
 
 ---
 
@@ -82,18 +91,11 @@ A community-based, youth and women-led recovery system powered by digital tracki
 ---
 
 ## ♻️ The ReVamp! Store
+![w:150 right](./public/images/revamp-logo-new.png)
 *Premium upcycled products with verifiable traceability.*
 - **Waste to Wealth:** We manufacture eco-pavers, modular furniture, and tote bags.
 - **Guaranteed Traceability:** Every product shows the exact plastic mix (e.g., HDPE) and the weight diverted from landfills.
 ![w:400 center drop-shadow](./public/images/trial-disc-green.jpg)
-
----
-
-## 🤝 Alignment with Funder Objectives
-Our project directly accelerates the mandates of our partners:
-- **UNDP & GEF:** Advancing local circular economies and empowering marginalized women.
-- **SGP Nigeria & DPI:** Building highly replicable, digital-first grassroots solutions.
-- **NDC 3.0:** Contributing directly to Nigeria's waste-sector emission reduction commitments.
 
 ---
 
@@ -108,5 +110,6 @@ With the Top 10 funding, PlastiTrack will:
 <!-- _class: bg-primary -->
 # Thank You.
 ### Let's build a circular Nigeria, together.
-**Live MVP:** plastitrack.vercel.app
+**Live MVP:** plastitrackbes.vercel.app
 **Contact:** safe@plastitrack.org
+

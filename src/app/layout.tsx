@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://plastitrack.vercel.app'),
+  metadataBase: new URL('https://plastitrackbes.vercel.app'),
   title: "PlastiTrack - Clean Plastic Recovery & Upcycling",
   description: "A community plastic recovery system built in Abuja. We run women led collection hubs, track plastic recovery with public data, and convert waste into durable products.",
   openGraph: {
