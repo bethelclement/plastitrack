@@ -74,7 +74,7 @@ const MOCK_PRODUCTS = [
         description: "Durable and eco-friendly broom made from repurposed PET plastic bottles.",
         price: 2000,
         category: "Home and décor",
-        images: ["/images/pet-broom.jpg"],
+        images: ["/images/trial-disc-1st.jpg"],
         plastic_used: "PET",
         weight_diverted: 0.5,
         made_by: "Blessn Evea Signature",
