@@ -8,7 +8,7 @@ export default function Hubs() {
                 <div className="text-center mb-16">
                     <h1 className="text-4xl font-extrabold text-gray-900 tracking-tight">Community Hubs</h1>
                     <p className="mt-4 text-xl text-gray-500 max-w-2xl mx-auto">
-                        PlastiTrack operates through localized recovery hubs. These are the hearts of our community action.
+                        PlastiTrackBES operates through localized recovery hubs. These are the hearts of our community action.
                     </p>
                 </div>
 

@@ -21,7 +21,7 @@ export default function PSEAPolicyPage() {
                             <div>
                                 <h3 className="text-red-800 font-bold mb-2">Zero Tolerance</h3>
                                 <p className="text-red-700 m-0">
-                                    PlastiTrack and Blessn Evea Signature (BES) maintain a strict zero-tolerance policy against any form of sexual exploitation or abuse. This applies to all staff, volunteers, hub operators, and partners involved in our projects.
+                                    PlastiTrackBES and Blessn Evea Signature (BES) maintain a strict zero-tolerance policy against any form of sexual exploitation or abuse. This applies to all staff, volunteers, hub operators, and partners involved in our projects.
                                 </p>
                             </div>
                         </div>

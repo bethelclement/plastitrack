@@ -37,7 +37,7 @@ export default function PartnersPage() {
                         Funders & Partners
                     </h1>
                     <p className="mt-4 text-xl text-gray-500 max-w-2xl mx-auto">
-                        PlastiTrack and Blessn Evea Signature are supported by leading institutions committed to the circular economy and Nigeria's NDC 3.0 waste-sector goals.
+                        PlastiTrackBES and Blessn Evea Signature are supported by leading institutions committed to the circular economy and Nigeria's NDC 3.0 waste-sector goals.
                     </p>
                 </div>
 

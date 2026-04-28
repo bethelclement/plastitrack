@@ -84,7 +84,7 @@ export function Footer() {
                         <span className="font-bold text-gray-600">Digital Peers International</span>
                     </div>
                     <p className="mt-8 text-base text-gray-400 xl:text-center">
-                        &copy; {new Date().getFullYear()} Blessn Evea Signature - PlastiTrack. All rights reserved.
+                        &copy; {new Date().getFullYear()} Blessn Evea Signature - PlastiTrackBES. All rights reserved.
                     </p>
                 </div>
             </div>

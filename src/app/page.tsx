@@ -11,7 +11,7 @@ export default function Home() {
             PLASTICS <span className="text-primary">REIMAGINED</span>
           </h1>
           <p className="mt-4 text-xl md:text-2xl text-gray-500 max-w-3xl mx-auto mb-10">
-            PlastiTrack is a community plastic recovery system built in Abuja. We run women led collection hubs, track plastic recovery with public data, and convert waste into durable products through the ReVamp Store.
+            PlastiTrackBES is a community plastic recovery system built in Abuja. We run women led collection hubs, track plastic recovery with public data, and convert waste into durable products through the ReVamp Store.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Link href="/register" className="inline-flex items-center justify-center px-8 py-4 border border-transparent text-lg font-medium rounded-md text-white bg-primary hover:bg-primary/90 md:py-4 md:text-lg md:px-10">
@@ -35,7 +35,7 @@ export default function Home() {
             <p className="mt-4 max-w-2xl mx-auto text-xl text-gray-500 mb-10">
               We collect and sort plastic by category at community hubs. We log every kilogram, publish weekly totals, and reward contributors through cash credits, vouchers, school support, or discounts on upcycled products.
             </p>
-            <img src="/images/team-photo.jpg" alt="Team BES PlastiTrack" className="w-full max-w-5xl mx-auto rounded-3xl shadow-xl object-cover h-[400px]" />
+            <img src="/images/team-photo.jpg" alt="Team BES PlastiTrackBES" className="w-full max-w-5xl mx-auto rounded-3xl shadow-xl object-cover h-[400px]" />
           </div>
 
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3 text-center">
@@ -90,6 +90,22 @@ export default function Home() {
               <Link href="/about" className="text-primary font-bold text-lg hover:text-green-700 transition-colors inline-flex items-center group">
                 See our full project portfolio <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Funders & Sponsors */}
+      <section className="bg-gray-50 py-16 border-t border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <span className="text-sm font-bold tracking-widest text-gray-400 uppercase mb-8 block">Supported & Funded By</span>
+          <div className="flex flex-wrap justify-center items-center gap-12 md:gap-20 opacity-90 transition-all duration-300">
+            <img src="/images/undp_logo.png" alt="UNDP Logo" className="h-20 object-contain mix-blend-multiply" />
+            <img src="/images/gef_logo.png" alt="GEF Logo" className="h-24 object-contain mix-blend-multiply" />
+            <img src="/images/sgp_logo.png" alt="SGP Logo" className="h-20 object-contain mix-blend-multiply" />
+            <div className="flex flex-col items-center justify-center h-20">
+              <span className="font-black text-3xl text-blue-900 tracking-tighter">DPI</span>
+              <span className="text-xs font-bold text-gray-500 uppercase tracking-widest">Digital Peers International</span>
             </div>
           </div>
         </div>

@@ -11,7 +11,7 @@ export default function About() {
                         What We Do
                     </h1>
                     <p className="mt-4 text-xl text-gray-600 max-w-3xl mx-auto">
-                        PlastiTrack is turning the tide on plastic pollution in Abuja through structured, youth and women-led circular innovation.
+                        PlastiTrackBES is turning the tide on plastic pollution in Abuja through structured, youth and women-led circular innovation.
                     </p>
                 </div>
             </div>

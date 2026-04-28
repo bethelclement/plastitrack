@@ -5,7 +5,7 @@ export default function TeamPage() {
         {
             name: "Blessing Evea Onwe",
             role: "Lead Director / Founder",
-            bio: "Spearheads the PlastiTrack initiative under Blessn Evea Signature (BES), driving community engagement and women empowerment in Abuja."
+            bio: "Spearheads the PlastiTrackBES initiative under Blessn Evea Signature (BES), driving community engagement and women empowerment in Abuja."
         },
         {
             name: "Bethel Clement",
@@ -30,9 +30,9 @@ export default function TeamPage() {
                 <div className="text-center mb-16">
                     <h1 className="text-4xl font-extrabold text-gray-900 tracking-tight">Meet the Team</h1>
                     <p className="mt-4 text-xl text-gray-500 max-w-3xl mx-auto mb-10">
-                        The dedicated BES Leads driving the PlastiTrack mission forward.
+                        The dedicated BES Leads driving the PlastiTrackBES mission forward.
                     </p>
-                    <img src="/images/team-photo.jpg" alt="Team BES PlastiTrack" className="w-full max-w-4xl mx-auto rounded-2xl shadow-lg object-cover h-96 mb-8" />
+                    <img src="/images/team-photo.jpg" alt="Team BES PlastiTrackBES" className="w-full max-w-4xl mx-auto rounded-2xl shadow-lg object-cover h-96 mb-8" />
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
