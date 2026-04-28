@@ -22,7 +22,6 @@ export default function Home() {
               View Impact Dashboard
             </Link>
           </div>
-          </div>
           
           {/* Upcoming Event Promo */}
           <div className="mt-16 mx-auto max-w-4xl bg-gray-50 rounded-2xl p-6 border border-gray-100 shadow-sm flex flex-col md:flex-row items-center gap-8 text-left">
