@@ -68,12 +68,24 @@ const MOCK_PRODUCTS = [
         weight_diverted: 0.2,
         made_by: "Blessn Evea Signature",
     },
+    {
+        id: "6",
+        name: "PET Broom",
+        description: "Durable and eco-friendly broom made from repurposed PET plastic bottles.",
+        price: 2000,
+        category: "Home and décor",
+        images: ["/images/pet-broom.jpg"],
+        plastic_used: "PET",
+        weight_diverted: 0.5,
+        made_by: "Blessn Evea Signature",
+    },
 ];
 
 export default function StorePage() {
     const [selectedCategory, setSelectedCategory] = useState("All");
     const [checkoutProduct, setCheckoutProduct] = useState<any | null>(null);
     const [orderSuccess, setOrderSuccess] = useState(false);
+    const [trackingNumber, setTrackingNumber] = useState("");
 
     const filteredProducts =
         selectedCategory === "All"
@@ -82,11 +94,9 @@ export default function StorePage() {
 
     const handleCheckout = (e: React.FormEvent) => {
         e.preventDefault();
+        const trackingId = "PT-" + Math.floor(100000 + Math.random() * 900000);
+        setTrackingNumber(trackingId);
         setOrderSuccess(true);
-        setTimeout(() => {
-            setCheckoutProduct(null);
-            setOrderSuccess(false);
-        }, 3000);
     };
 
     return (
@@ -199,10 +209,20 @@ export default function StorePage() {
                                 <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                                     <CheckCircle2 className="w-8 h-8 text-primary" />
                                 </div>
-                                <h3 className="text-2xl font-bold text-gray-900 mb-2">Order Confirmed!</h3>
-                                <p className="text-gray-500">
-                                    Your "Pay on Delivery" order for the {checkoutProduct.name} has been processed. We will contact you shortly for delivery!
+                                <h3 className="text-2xl font-bold text-gray-900 mb-2">Congrats!</h3>
+                                <p className="text-gray-500 mb-4">
+                                    Your order for the {checkoutProduct.name} is on the way. We will contact you shortly for delivery!
                                 </p>
+                                <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                                    <p className="text-sm text-gray-500 mb-1">Receipt Tracking Number:</p>
+                                    <p className="text-xl font-bold text-gray-900 tracking-wider">{trackingNumber}</p>
+                                </div>
+                                <button
+                                    onClick={() => { setCheckoutProduct(null); setOrderSuccess(false); }}
+                                    className="mt-6 bg-primary text-white px-6 py-2 rounded-lg font-semibold hover:bg-primary/90 transition-colors shadow-sm"
+                                >
+                                    Close
+                                </button>
                             </div>
                         ) : (
                             <>
@@ -231,29 +251,37 @@ export default function StorePage() {
                                                 <input required type="text" className="w-full border-gray-300 rounded-lg shadow-sm focus:ring-primary focus:border-primary px-4 py-2 border" placeholder="e.g. Ojeka Jane" />
                                             </div>
                                             <div>
-                                                <label className="block text-sm font-medium text-gray-700 mb-1">Delivery Address (Abuja)</label>
-                                                <textarea required className="w-full border-gray-300 rounded-lg shadow-sm focus:ring-primary focus:border-primary px-4 py-2 border" rows={2} placeholder="Full address" />
-                                            </div>
-                                            <div>
                                                 <label className="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
                                                 <input required type="tel" className="w-full border-gray-300 rounded-lg shadow-sm focus:ring-primary focus:border-primary px-4 py-2 border" placeholder="080..." />
                                             </div>
+                                            <div>
+                                                <label className="block text-sm font-medium text-gray-700 mb-1">Delivery Address</label>
+                                                <textarea required className="w-full border-gray-300 rounded-lg shadow-sm focus:ring-primary focus:border-primary px-4 py-2 border" rows={2} placeholder="Full address" />
+                                            </div>
                                         </div>
 
-                                        <div className="mt-8 pt-6 border-t border-gray-100">
-                                            <div className="flex justify-between items-center mb-6">
-                                                <span className="text-gray-600 font-medium">Payment Method</span>
-                                                <span className="font-bold text-gray-900 bg-gray-100 px-3 py-1 rounded-md text-sm">Pay on Delivery</span>
+                                        <div className="mt-6 pt-6 border-t border-gray-100">
+                                            <div className="mb-6 p-4 bg-blue-50 border border-blue-100 rounded-xl">
+                                                <h5 className="font-bold text-blue-900 mb-2">Bank Transfer Details</h5>
+                                                <p className="text-sm text-blue-800">Please transfer <strong>₦{checkoutProduct.price.toLocaleString()}</strong> to:</p>
+                                                <div className="mt-2 bg-white p-3 rounded-lg border border-blue-100">
+                                                    <p className="font-mono text-lg font-bold text-gray-900">9063877010</p>
+                                                    <p className="text-sm font-medium text-gray-700">FCMB</p>
+                                                    <p className="text-sm font-medium text-gray-700">Blessn Evea Signature</p>
+                                                </div>
                                             </div>
+
+                                            <div className="mb-6">
+                                                <label className="block text-sm font-medium text-gray-700 mb-1">Upload Receipt</label>
+                                                <input required type="file" accept="image/*,.pdf" className="w-full border-gray-300 rounded-lg shadow-sm focus:ring-primary focus:border-primary px-4 py-2 border file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary/10 file:text-primary hover:file:bg-primary/20" />
+                                            </div>
+
                                             <button
                                                 type="submit"
                                                 className="w-full bg-primary text-white py-3.5 px-4 rounded-xl font-bold hover:bg-primary/90 transition-colors shadow-sm"
                                             >
-                                                Confirm Order — ₦{checkoutProduct.price.toLocaleString()}
+                                                I Have Made The Transfer
                                             </button>
-                                            <p className="text-center text-xs text-gray-400 mt-4">
-                                                (Structure ready for Paystack integration later)
-                                            </p>
                                         </div>
                                     </form>
                                 </div>
