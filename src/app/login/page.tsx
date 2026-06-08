@@ -35,16 +35,9 @@ export default function LoginPage() {
     }
   };
 
-  const [showGoogleModal, setShowGoogleModal] = useState(false);
-  const [demoLoading, setDemoLoading] = useState(false);
-
-  const handleGoogleAuth = () => {
-    setShowGoogleModal(true);
-  };
-
-  const triggerRealGoogleAuth = async () => {
-    setShowGoogleModal(false);
+  const handleGoogleAuth = async () => {
     setLoading(true);
+    setError(null);
     try {
       const { error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
@@ -57,53 +50,6 @@ export default function LoginPage() {
       setError(err.message || "An unexpected error occurred during Google Sign-in.");
     } finally {
       setLoading(false);
-    }
-  };
-
-  const loginWithDemoAccount = async () => {
-    setDemoLoading(true);
-    setError(null);
-    try {
-      // 1. Try signing in with demo credentials
-      const { data, error: signInError } = await supabase.auth.signInWithPassword({
-        email: "demo@plastitrack.org",
-        password: "password123",
-      });
-
-      if (signInError) {
-        // 2. If user not found, register it
-        const { error: signUpError } = await supabase.auth.signUp({
-          email: "demo@plastitrack.org",
-          password: "password123",
-          options: {
-            data: {
-              full_name: "Demo Contributor",
-              role: "contributor"
-            }
-          }
-        });
-
-        if (signUpError) {
-          throw new Error(signUpError.message);
-        }
-
-        // 3. Retry signing in after signup
-        const { error: retryError } = await supabase.auth.signInWithPassword({
-          email: "demo@plastitrack.org",
-          password: "password123",
-        });
-
-        if (retryError) {
-          throw new Error(retryError.message);
-        }
-      }
-
-      window.location.href = "/member/profile";
-    } catch (err: any) {
-      setError(err.message || "Demo login bypass failed.");
-      setShowGoogleModal(false);
-    } finally {
-      setDemoLoading(false);
     }
   };
 
@@ -216,34 +162,6 @@ export default function LoginPage() {
           </Link>
         </div>
       </div>
-
-      {/* Google Configuration Modal */}
-      {showGoogleModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-              <div onClick={() => setShowGoogleModal(false)} className="absolute inset-0 bg-gray-900/60 backdrop-blur-md"></div>
-              <div className="relative bg-white rounded-3xl p-8 max-w-md w-full border border-gray-200 shadow-2xl animate-scale-in text-center z-10">
-                  <h3 className="text-xl font-black text-gray-900 mb-2">Google Auth Configuration</h3>
-                  <p className="text-sm text-gray-500 mb-6 font-medium leading-relaxed">
-                      To use Google Sign-in on a live domain, you must configure Google credentials in your Supabase Dashboard. 
-                  </p>
-                  <div className="space-y-3">
-                      <button
-                          onClick={triggerRealGoogleAuth}
-                          className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3.5 rounded-2xl transition-all shadow-md shadow-green-600/10 text-sm"
-                      >
-                          Try Real Google Sign-In
-                      </button>
-                      <button
-                          onClick={loginWithDemoAccount}
-                          disabled={demoLoading}
-                          className="w-full bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold py-3.5 rounded-2xl transition-all text-sm flex items-center justify-center gap-2"
-                      >
-                          {demoLoading ? <Loader2 className="w-4 h-4 animate-spin text-gray-600" /> : "Use Demo Account Bypass"}
-                      </button>
-                  </div>
-              </div>
-          </div>
-      )}
     </div>
   );
 }
