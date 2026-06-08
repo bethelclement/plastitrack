@@ -2,114 +2,220 @@
 marp: true
 theme: default
 paginate: true
-backgroundColor: #ffffff
-color: #111827
+size: 16:9
 style: |
+  :root {
+    --primary: #047857; /* Emerald 700 */
+    --secondary: #059669; /* Emerald 600 */
+    --accent: #10b981; /* Emerald 500 */
+    --dark: #064e3b; /* Emerald 900 */
+    --text-main: #1f2937;
+    --text-light: #6b7280;
+  }
   section {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    background-color: #ffffff;
+    color: var(--text-main);
+    padding: 60px 80px;
   }
-  h1 {
-    color: #166534;
-    font-weight: 800;
+  h1, h2, h3 {
+    color: var(--dark);
+    margin-bottom: 0.5em;
   }
-  h2 {
-    color: #15803d;
-    font-weight: 700;
-  }
-  .highlight {
-    color: #16a34a;
-    font-weight: bold;
-  }
-  .bg-primary {
-    background-color: #16a34a;
+  h1 { font-size: 3.5em; font-weight: 900; letter-spacing: -0.02em; }
+  h2 { font-size: 2.2em; font-weight: 800; border-bottom: 4px solid var(--accent); padding-bottom: 10px; display: inline-block; }
+  h3 { font-size: 1.5em; font-weight: 700; color: var(--primary); }
+  p, li { font-size: 1.2em; line-height: 1.6; color: var(--text-light); }
+  .highlight { color: var(--accent); font-weight: 800; }
+  .box { background: #f3f4f6; padding: 25px; border-radius: 12px; border-left: 6px solid var(--primary); margin-top: 20px; }
+  
+  /* Custom Classes */
+  section.title-slide {
+    background: linear-gradient(135deg, #064e3b 0%, #047857 100%);
     color: white;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
-  .bg-primary h1, .bg-primary h2, .bg-primary p {
-    color: white;
+  section.title-slide h1 { color: white; border: none; font-size: 4em; text-shadow: 2px 2px 10px rgba(0,0,0,0.3); margin-bottom: 0;}
+  section.title-slide h2 { color: #a7f3d0; border: none; font-weight: 500; letter-spacing: 2px; }
+  section.title-slide p { color: #ecfdf5; font-size: 1.5em; }
+  
+  section.split {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    gap: 40px;
+    align-items: center;
   }
+  
+  section.impact {
+    background-color: #ecfdf5;
+  }
+  section.impact h2 { border-color: var(--dark); }
+  
+  .metric { text-align: center; padding: 20px; }
+  .metric h1 { font-size: 3.5em; color: var(--primary); margin: 0; border: none; }
+  .metric p { font-size: 1.2em; font-weight: bold; color: var(--dark); text-transform: uppercase; letter-spacing: 1px; }
 ---
 
-<!-- _class: bg-primary -->
-![w:150 center bg-white drop-shadow rounded](./public/images/bes-logo.jpg)
-# Plastics REIMAGINED 🌍
-## Community Plastic Recovery & Digital Upcycling
-**Team BES PlastiTrack**
-_DPI-SGP 2.0 Innovation Challenge_
+<!-- _class: title-slide -->
+
+![w:200 center bg-white drop-shadow rounded-xl](./public/images/bes-logo.jpg)
+
+# PlastiTrackBES
+## Plastics REIMAGINED
+
+**Community Plastic Recovery, Digital Tracking & Youth/Women-Led Upcycling**
+*DPI-SGP 2.0 Innovation Challenge (Top 10 Finalist)*
 
 ---
 
-## 🤝 Supported By Our Esteemed Partners
-Our project directly accelerates the mandates of our core funders and partners:
-- **Global Environment Facility (GEF):** Core Funder for grassroots sustainability.
-- **UNDP:** Aligning local circular economy efforts with global SDGs.
-- **SGP Nigeria:** Supporting community-based environmental initiatives.
-- **Digital Peers International (DPI):** Project Incubator driving the SGP 2.0 initiative.
+## 🚨 The Deep-Rooted Problem
+
+Nigeria generates **>2.5 Million tonnes** of plastic waste annually.
+Less than **10%** is formally recovered.
+
+- **Informal Settlements Suffer:** Communities like *Kuchingoro Garamajiji* face severe drainage blockages, flooding, and open burning.
+- **The Missing Link:** Awareness campaigns fail without **visible infrastructure** and **economic incentives**.
+- **Exclusion:** Women and youth—the backbone of these communities—are completely sidelined from the formal circular economy value chain.
 
 ---
 
-## 👥 The Team: BES Leads
+<!-- _class: split -->
+
+## 💡 Our Comprehensive Solution
+
+**PlastiTrackBES** is a highly scalable, community-based recovery system powered by strict digital tracking and a tangible reward economy.
+
+1. **Recovery Hubs:** Safe, localized collection centers managed by women.
+2. **Digital Accountability:** Live, transparent tracking of every kilogram of PET, HDPE, and PP.
+3. **The ReVamp! Store:** Closing the loop by transforming waste into highly premium, traceable, and affordable products.
+
+![w:500 right drop-shadow rounded-xl](./public/images/waste-2-wonder.jpg)
+
+---
+
+## 👥 The BES Leadership Team
+*A powerhouse team combining data, community trust, and creative upcycling.*
+
 - **Blessing Evea Onwe** - Team Lead & Creative Director
 - **Bethel Clement** - Asst Team Lead & Product/Data Lead
 - **Kenneth Anietie Nyong** - Program Coordinator & Community Engagement
 - **Wakala Bilkisu** - Communications Lead & Store Operations
 
-![w:500 center shadow](./public/images/team-photo.jpg)
+![w:600 center drop-shadow rounded-xl mt-4](./public/images/team-photo.jpg)
 
 ---
 
-## 🚨 The Core Problem
-- **Massive Leakage:** Nigeria generates >2.5M tonnes of plastic waste annually; <10% is formally recycled.
-- **Informal Settlements:** Communities like *Kuchingoro Garamajiji* and *Durumi* suffer from drainage blockages and open burning.
-- **The Gap:** Awareness campaigns fail without **structured incentives** and **visible infrastructure**. Women and youth are sidelined from formal value chains.
+## 🤝 Supported By Global Mandates
+
+Our project doesn't just collect plastic; it executes the exact mandates of our esteemed funders and partners:
+
+- **Global Environment Facility (GEF):** Driving grassroots environmental sustainability and systemic change.
+- **UNDP:** Aligning local circular economy initiatives directly with the Global SDGs.
+- **SGP Nigeria:** Empowering community-based environmental protection initiatives.
+- **Digital Peers International (DPI):** Project Incubator driving the powerful SGP 2.0 initiative.
 
 ---
 
-## 💡 The PlastiTrack Solution
-A community-based, youth and women-led recovery system powered by digital tracking and a tangible reward economy.
+## 📍 Track Record: Successful Sensitization
 
-1. **Recovery Hubs:** Safe, localized collection centers.
-2. **Digital Accountability:** Live, transparent tracking of every kilogram (PET, HDPE, PP).
-3. **The ReVamp Store:** Closing the loop by turning waste into premium, traceable products.
+**Phase 1: Preteen & Teen Creative Upcycling**
+We didn't start with apps; we started with minds. Our initial target audience was preteens and teens. 
 
----
-
-## 📍 Action on the Ground: Pilot Hubs
-- **Kuchingoro Garamajiji Hub:** Household aggregation, serving 200+ households, managed by trained women operators.
-- **Durumi Informal Settlement Hub:** High-impact intervention working directly with local school eco clubs.
-
-*Result: We move communities from occasional cleanups to daily circular habits.*
+<div class="box">
+We trained them on creative upcycling—turning plastic waste into high-quality wall-decors and accessories. <strong>Why?</strong> Because when they see that their choices can clean an environment <em>and</em> decorate a room, they show immense, lasting interest in the circular economy.
+</div>
 
 ---
 
-## 📈 Impact Dashboard
+<!-- _class: split -->
+
+## 🌍 Milestone: World Earth Day 2026
+
+**Waste 2 Wonder Partnership**
+
+Partnering with the **Climate Teen Hub**, we commemorated World Earth Day with a massive global push.
+
+- **Global Reach:** We taught teens from multiple countries (the vast majority from Nigeria).
+- **Core Focus:** Turning pure waste into art, focusing heavily on PET bottles—the largest contributor to local pollution.
+- *Result:* Live transformation of pure waste into premium products, shifting community perspective instantly.
+
+![w:500 right drop-shadow rounded-xl](./public/images/trial-disc-green.jpg)
+
+---
+
+## 🏆 Media & National Recognition
+
+Our work is already turning heads at a national level:
+
+- **Award Nomination:** PlastiTrackBES has been officially nominated for a prestigious environmental impact award.
+- **National Radio Broadcast:** Our Assistant Team Lead was invited by **Kiss FM** to discuss the vital work we do, projecting our model to thousands of listeners across the country.
+
+*We are not just a concept; we are a recognized, moving force.*
+
+---
+
+<!-- _class: impact -->
+
+## 📈 Platform Metrics & Data
+
 *Real-time data verifying our community impact.*
-- **48,640 kg** Total Plastic Recovered
-- **1,245** Registered Households
-- **₦2.4M+** Issued in Community Rewards
-- **60%** Income Transition for Hub Operators
+
+<div style="display: flex; justify-content: space-around; margin-top: 40px;">
+  <div class="metric">
+    <h1>48.6k</h1>
+    <p>Kg Recovered</p>
+  </div>
+  <div class="metric">
+    <h1>1.2k</h1>
+    <p>Households</p>
+  </div>
+  <div class="metric">
+    <h1>₦2.4M</h1>
+    <p>Rewards Issued</p>
+  </div>
+</div>
+
+<div class="box" style="text-align: center; margin-top: 40px;">
+  <strong>60% Income Transition</strong> for women operators leading our Hubs.
+</div>
 
 ---
 
-## ♻️ The ReVamp! Store
-![w:150 right](./public/images/revamp-logo-new.png)
-*Premium upcycled products with verifiable traceability.*
-- **Waste to Wealth:** We manufacture eco-pavers, modular furniture, and tote bags.
-- **Guaranteed Traceability:** Every product shows the exact plastic mix (e.g., HDPE) and the weight diverted from landfills.
-![w:400 center drop-shadow](./public/images/trial-disc-green.jpg)
+## ♻️ The ReVamp! Upcycling Store
+
+Closing the loop means giving waste absolute value. We manufacture highly affordable, beautiful products to encourage Nigerians to buy local, recycled goods.
+
+- **Recycled Keychains:** Vibrant, durable daily-use items. (₦2,000)
+- **Upcycled Earrings:** Elegant PET eco-jewelry. (₦3,000)
+- **Recycled Bangles:** Fashionable HDPE bands. (₦4,500)
+- **ReVamp Trial Discs:** Demonstrating structural integrity for future eco-pavers and modular furniture. (₦5,000 - ₦5,500)
+
+*Every product guarantees traceability back to the plastic type and weight diverted.*
 
 ---
 
-## 🚀 The Future (Next Steps)
-With the Top 10 funding, PlastiTrack will:
-1. **Scale Hub Infrastructure:** Upgrade existing hubs with better aggregation tools.
-2. **Expand the ReVamp Facility:** Invest in higher-capacity shredders and extruders.
-3. **Replication Toolkit:** Package our software and methodology for rapid deployment in other Nigerian states.
+## 🚀 The Future: Scaling PlastiTrackBES
+
+With the **DPI-SGP 2.0 Top 10 Funding**, we will aggressively scale:
+
+1. **Scale Hub Infrastructure:** Deploy robust aggregation tools and digital scales to existing and new informal settlement hubs.
+2. **Expand the ReVamp Facility:** Invest in high-capacity shredders and extruders to move from accessories to eco-pavers and furniture.
+3. **The Replication Toolkit:** Package our proprietary software, Google Auth onboarding, and community methodology for rapid deployment across all 36 Nigerian states.
 
 ---
 
-<!-- _class: bg-primary -->
+<!-- _class: title-slide -->
+
 # Thank You.
-### Let's build a circular Nigeria, together.
-**Live MVP:** plastitrackbes.vercel.app
-**Contact:** safe@plastitrack.org
+
+### Let's Build a Circular Nigeria, Together.
+
+**Live Platform:** plastitrackbes.vercel.app
+**Contact:** safe@plastitrackbes.org
+
+*Proudly presented by Team BES.*
 

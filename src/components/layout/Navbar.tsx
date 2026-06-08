@@ -1,11 +1,26 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu, X, Leaf } from "lucide-react";
+import { supabase } from "@/lib/supabase";
+import { User } from "@supabase/supabase-js";
 
 export function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
+    const [user, setUser] = useState<User | null>(null);
+
+    useEffect(() => {
+        supabase.auth.getSession().then(({ data: { session } }) => {
+            setUser(session?.user ?? null);
+        });
+
+        const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+            setUser(session?.user ?? null);
+        });
+
+        return () => subscription.unsubscribe();
+    }, []);
 
     return (
         <nav className="border-b bg-white">
@@ -35,12 +50,28 @@ export function Navbar() {
                         </div>
                     </div>
                     <div className="hidden sm:ml-6 sm:flex sm:items-center space-x-4">
-                        <Link href="/login" className="text-gray-500 hover:text-gray-700 font-medium">
-                            Log in
-                        </Link>
-                        <Link href="/register" className="bg-primary text-white px-4 py-2 rounded-md font-medium hover:bg-primary/90 transition-colors">
-                            Join the Movement
-                        </Link>
+                        {user ? (
+                            <>
+                                <Link href="/member/profile" className="text-gray-700 hover:text-gray-900 font-bold bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-xl text-sm transition-all">
+                                    My Profile
+                                </Link>
+                                <button
+                                    onClick={async () => { await supabase.auth.signOut(); window.location.href = "/"; }}
+                                    className="text-red-500 hover:text-red-700 font-semibold text-sm transition-colors"
+                                >
+                                    Sign Out
+                                </button>
+                            </>
+                        ) : (
+                            <>
+                                <Link href="/login" className="text-gray-500 hover:text-gray-700 font-medium">
+                                    Log in
+                                </Link>
+                                <Link href="/register" className="bg-primary text-white px-4 py-2 rounded-md font-medium hover:bg-primary/90 transition-colors">
+                                    Join the Movement
+                                </Link>
+                            </>
+                        )}
                     </div>
                     <div className="-mr-2 flex items-center sm:hidden">
                         <button
@@ -80,12 +111,28 @@ export function Navbar() {
                     </div>
                     <div className="pt-4 pb-3 border-t border-gray-200">
                         <div className="flex items-center px-4 space-x-4">
-                            <Link href="/login" className="block text-base font-medium text-gray-500 hover:text-gray-800">
-                                Log in
-                            </Link>
-                            <Link href="/register" className="block text-base font-medium bg-primary text-white px-4 py-2 rounded-md hover:bg-primary/90">
-                                Join the Movement
-                            </Link>
+                            {user ? (
+                                <>
+                                    <Link href="/member/profile" className="block text-base font-medium text-gray-700 hover:text-gray-900">
+                                        My Profile
+                                    </Link>
+                                    <button
+                                        onClick={async () => { await supabase.auth.signOut(); window.location.href = "/"; }}
+                                        className="block text-base font-medium text-red-500 hover:text-red-700 mt-2"
+                                    >
+                                        Sign Out
+                                    </button>
+                                </>
+                            ) : (
+                                <>
+                                    <Link href="/login" className="block text-base font-medium text-gray-500 hover:text-gray-800">
+                                        Log in
+                                    </Link>
+                                    <Link href="/register" className="block text-base font-medium bg-primary text-white px-4 py-2 rounded-md hover:bg-primary/90">
+                                        Join the Movement
+                                    </Link>
+                                </>
+                            )}
                         </div>
                     </div>
                 </div>
