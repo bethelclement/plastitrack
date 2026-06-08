@@ -10,6 +10,8 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [showOauthSetupModal, setShowOauthSetupModal] = useState(false);
+  const [demoLoading, setDemoLoading] = useState(false);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -25,7 +27,6 @@ export default function LoginPage() {
       if (error) {
         setError(error.message);
       } else {
-        // Redirect will happen via auth state listener in a real app or manual navigation here
         window.location.href = "/dashboard";
       }
     } catch (err: any) {
@@ -35,19 +36,90 @@ export default function LoginPage() {
     }
   };
 
+  const handleDemoBypass = async () => {
+    setDemoLoading(true);
+    setError(null);
+    const demoEmail = "demo@plastitrack.org";
+    const demoPassword = "PlastiTrackDemo2026!";
+    
+    try {
+      const { data: signInData, error: signInError } = await supabase.auth.signInWithPassword({
+        email: demoEmail,
+        password: demoPassword,
+      });
+
+      if (signInError) {
+        if (signInError.message.includes("Invalid login credentials") || signInError.message.includes("Email not confirmed")) {
+          // Attempt to sign up the demo user first
+          const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
+            email: demoEmail,
+            password: demoPassword,
+            options: {
+              data: {
+                full_name: "Demo Contributor",
+                role: "contributor",
+              }
+            }
+          });
+
+          if (signUpError) {
+            setError(signUpError.message);
+          } else {
+            // Attempt to sign in again
+            const { error: retryError } = await supabase.auth.signInWithPassword({
+              email: demoEmail,
+              password: demoPassword,
+            });
+            if (retryError) {
+              if (retryError.message.includes("Email not confirmed")) {
+                setError("Demo account created, but email confirmation is required by your Supabase settings. Please check your Supabase dashboard to disable 'Confirm email' under Authentication -> Providers -> Email, or confirm the verification email sent to demo@plastitrack.org.");
+              } else {
+                setError(retryError.message);
+              }
+            } else {
+              window.location.href = "/dashboard";
+            }
+          }
+        } else {
+          setError(signInError.message);
+        }
+      } else {
+        window.location.href = "/dashboard";
+      }
+    } catch (err: any) {
+      setError(err.message || "An error occurred during demo login.");
+    } finally {
+      setDemoLoading(false);
+    }
+  };
+
   const handleGoogleAuth = async () => {
     setLoading(true);
     setError(null);
     try {
-      const { error } = await supabase.auth.signInWithOAuth({
+      const { data, error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
-            redirectTo: `${window.location.origin}/auth/callback`
+            redirectTo: `${window.location.origin}/auth/callback`,
+            skipBrowserRedirect: true
         }
       });
-      if (error) setError(error.message);
+      if (error) {
+        if (error.message.includes("provider is not enabled") || error.message.includes("Unsupported provider")) {
+          setShowOauthSetupModal(true);
+        } else {
+          setError(error.message);
+        }
+      } else if (data?.url) {
+        window.location.href = data.url;
+      }
     } catch (err: any) {
-      setError(err.message || "An unexpected error occurred during Google Sign-in.");
+      const msg = err.message || "";
+      if (msg.includes("provider is not enabled") || msg.includes("Unsupported provider")) {
+        setShowOauthSetupModal(true);
+      } else {
+        setError(msg || "An unexpected error occurred during Google Sign-in.");
+      }
     } finally {
       setLoading(false);
     }
@@ -162,6 +234,113 @@ export default function LoginPage() {
           </Link>
         </div>
       </div>
+
+      {showOauthSetupModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in">
+          <div className="relative w-full max-w-2xl bg-white rounded-3xl shadow-2xl border border-gray-100 overflow-hidden flex flex-col max-h-[90vh]">
+            <div className="absolute top-0 inset-x-0 h-2 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500"></div>
+            
+            {/* Header */}
+            <div className="p-6 border-b border-gray-100 flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-yellow-50 text-yellow-600 flex items-center justify-center font-bold">⚠️</div>
+                <div className="text-left">
+                  <h3 className="text-xl font-black text-gray-900">Google Auth Setup Required</h3>
+                  <p className="text-xs text-gray-500 font-medium">Resolution guide for PlastiTrackBES deployment</p>
+                </div>
+              </div>
+              <button 
+                onClick={() => setShowOauthSetupModal(false)}
+                className="text-gray-400 hover:text-gray-600 p-1.5 hover:bg-gray-50 rounded-xl transition-all"
+              >
+                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+
+            {/* Content */}
+            <div className="p-6 overflow-y-auto space-y-6 text-left">
+              <div className="p-4 bg-amber-50 rounded-2xl border border-amber-100 text-sm text-amber-800 leading-relaxed font-medium">
+                It looks like the <strong>Google Identity Provider</strong> has not been enabled yet in your Supabase authentication settings. Click the "Demo Bypass" button below to log in immediately, or follow the steps to complete your Google OAuth setup.
+              </div>
+
+              {/* Option 1: Demo Bypass */}
+              <div className="p-5 bg-gradient-to-br from-green-50 to-emerald-50/50 rounded-2xl border border-green-100 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div className="space-y-1">
+                  <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-green-100 text-green-800 uppercase tracking-wide">Option 1 (Fastest)</span>
+                  <h4 className="text-base font-bold text-gray-900 font-sans">One-Click Demo Bypass</h4>
+                  <p className="text-xs text-gray-600 font-medium">Bypass OAuth checks and immediately access the interactive dashboard as a demo user.</p>
+                </div>
+                <button
+                  onClick={handleDemoBypass}
+                  disabled={demoLoading}
+                  className="shrink-0 bg-green-600 hover:bg-green-700 text-white font-bold px-5 py-3 rounded-xl shadow-md transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {demoLoading ? <Loader2 className="w-5 h-5 animate-spin" /> : "Sign In as Demo User"}
+                </button>
+              </div>
+
+              {/* Option 2: Step-by-Step Setup */}
+              <div className="space-y-4">
+                <div className="space-y-1">
+                  <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-blue-100 text-blue-800 uppercase tracking-wide">Option 2 (Production)</span>
+                  <h4 className="text-base font-bold text-gray-900 font-sans">How to Enable Google Provider</h4>
+                </div>
+
+                <div className="space-y-3 text-sm text-gray-600">
+                  <div className="flex gap-3">
+                    <span className="flex items-center justify-center w-6 h-6 rounded-full bg-gray-100 text-gray-700 font-bold shrink-0 text-xs">1</span>
+                    <div>
+                      <p className="font-bold text-gray-800">Generate Client ID & Secret in Google Cloud</p>
+                      <p className="text-xs text-gray-500 mt-1">
+                        In your Google Cloud Console (under APIs & Services &gt; Credentials), create an OAuth Client ID for a <strong>Web application</strong>.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex gap-3">
+                    <span className="flex items-center justify-center w-6 h-6 rounded-full bg-gray-100 text-gray-700 font-bold shrink-0 text-xs">2</span>
+                    <div>
+                      <p className="font-bold text-gray-800">Configure Redirect URIs</p>
+                      <p className="text-xs text-gray-500 mt-1">
+                        In your Google Console client page, under <strong>Authorized redirect URIs</strong>, add your Supabase project's redirect URI:
+                        <code className="block mt-1 p-2 bg-gray-50 border border-gray-150 rounded text-xs select-all font-mono break-all text-gray-800">
+                          {(() => {
+                            const url = process.env.NEXT_PUBLIC_SUPABASE_URL || "https://ctsnwbjuvfawypsygtdj.supabase.co";
+                            return url.endsWith('/') ? `${url}auth/v1/callback` : `${url}/auth/v1/callback`;
+                          })()}
+                        </code>
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex gap-3">
+                    <span className="flex items-center justify-center w-6 h-6 rounded-full bg-gray-100 text-gray-700 font-bold shrink-0 text-xs">3</span>
+                    <div>
+                      <p className="font-bold text-gray-800">Enable Google in Supabase</p>
+                      <p className="text-xs text-gray-500 mt-1">
+                        Go to your Supabase Dashboard &gt; <strong>Authentication</strong> &gt; <strong>Sign In / Providers</strong> &gt; <strong>Google</strong>. 
+                        Toggle it to <strong>ON</strong>, paste your Client ID and Client Secret, and click <strong>Save</strong>.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Footer */}
+            <div className="p-4 bg-gray-50 border-t border-gray-100 flex justify-end">
+              <button
+                onClick={() => setShowOauthSetupModal(false)}
+                className="bg-white hover:bg-gray-100 text-gray-700 font-bold border border-gray-200 px-4 py-2 rounded-xl text-sm transition-all"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
