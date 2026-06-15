@@ -161,3 +161,10 @@ layer base {
     }
   }
 }
+
+/* Eco Mode: Disables animations & transitions to save client-side CPU cycles and battery power */
+.eco-mode, .eco-mode * {
+  animation: none !important;
+  transition: none !important;
+  scroll-behavior: auto !important;
+}

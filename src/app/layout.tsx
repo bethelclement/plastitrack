@@ -41,11 +41,25 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: `
+          try {
+            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+              document.documentElement.classList.add('dark');
+            } else {
+              document.documentElement.classList.remove('dark');
+            }
+            if (localStorage.ecoMode === 'true') {
+              document.documentElement.classList.add('eco-mode');
+            }
+          } catch (_) {}
+        ` }} />
+      </head>
       <body
-        className={`${outfit.variable} antialiased font-sans min-h-screen flex flex-col`}
+        className={`${outfit.variable} antialiased font-sans min-h-screen flex flex-col bg-background text-foreground transition-colors duration-200`}
       >
         <Navbar />
-        <main className="flex-1 bg-gray-50">
+        <main className="flex-1 bg-gray-50 dark:bg-gray-950 transition-colors duration-200">
           {children}
         </main>
         <Footer />

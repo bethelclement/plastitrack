@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Search, MapPin, Calendar, User, ShoppingBag, ArrowRight, ShieldCheck, Download, Award, X, Sparkles, Leaf } from "lucide-react";
+import Link from "next/link";
 
 interface TimelineStep {
     title: string;
@@ -233,15 +234,54 @@ const MOCK_TRACED_DATA: Record<string, TracedData> = {
 
 export default function TraceabilityPage() {
     const [searchId, setSearchId] = useState("");
-    const [tracedResult, setTracedResult] = useState<TracedData | null>(MOCK_TRACED_DATA["PT-839210"]);
+    const [tracedResult, setTracedResult] = useState<TracedData | null>(null);
     const [showCert, setShowCert] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
+    const [allTracedData, setAllTracedData] = useState<Record<string, TracedData>>(MOCK_TRACED_DATA);
+
+    useEffect(() => {
+        // Load default selection item
+        setTracedResult(MOCK_TRACED_DATA["PT-839210"]);
+
+        // Load custom orders from localStorage
+        try {
+            const customOrdersRaw = localStorage.getItem("custom_orders");
+            if (customOrdersRaw) {
+                const customOrders: any[] = JSON.parse(customOrdersRaw);
+                if (customOrders.length > 0) {
+                    const updatedData = { ...MOCK_TRACED_DATA };
+                    customOrders.forEach((order) => {
+                        // Re-map string icons to React JSX icons
+                        const restoredTimeline = order.timeline.map((step: any) => {
+                            let jsxIcon = <Leaf className="w-5 h-5" />;
+                            if (step.icon === "shield") jsxIcon = <ShieldCheck className="w-5 h-5" />;
+                            if (step.icon === "map") jsxIcon = <MapPin className="w-5 h-5" />;
+                            if (step.icon === "award") jsxIcon = <Award className="w-5 h-5" />;
+                            if (step.icon === "shopping-bag") jsxIcon = <ShoppingBag className="w-5 h-5" />;
+                            return {
+                                ...step,
+                                icon: jsxIcon
+                            };
+                        });
+
+                        updatedData[order.id] = {
+                            ...order,
+                            timeline: restoredTimeline
+                        };
+                    });
+                    setAllTracedData(updatedData);
+                }
+            }
+        } catch (err) {
+            console.error("Failed to load custom orders from localStorage", err);
+        }
+    }, []);
 
     const handleSearch = (e: React.FormEvent) => {
         e.preventDefault();
         const formattedId = searchId.trim().toUpperCase();
-        if (MOCK_TRACED_DATA[formattedId]) {
-            setTracedResult(MOCK_TRACED_DATA[formattedId]);
+        if (allTracedData[formattedId]) {
+            setTracedResult(allTracedData[formattedId]);
             setErrorMessage("");
         } else {
             setErrorMessage("Tracking number not found. Make sure it matches format PT-XXXXXX or RC-XXXXXX.");
@@ -250,31 +290,31 @@ export default function TraceabilityPage() {
 
     const handleQuickSelect = (id: string) => {
         setSearchId(id);
-        setTracedResult(MOCK_TRACED_DATA[id]);
+        setTracedResult(allTracedData[id]);
         setErrorMessage("");
     };
 
     return (
-        <div className="flex flex-col min-h-screen bg-gray-50 py-12 relative overflow-hidden">
-            <div className="absolute inset-0 opacity-5 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] mix-blend-overlay pointer-events-none"></div>
+        <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-950 transition-colors duration-200 py-12 relative overflow-hidden">
+            <div className="absolute inset-0 opacity-5 dark:opacity-[0.02] bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] mix-blend-overlay pointer-events-none"></div>
 
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10 animate-fade-in-up">
                 {/* Header */}
                 <div className="text-center mb-10">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-50 border border-green-200/30 text-green-700 text-xs font-bold mb-3">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-50 dark:bg-green-950/20 border border-green-200/30 dark:border-green-800/20 text-green-700 dark:text-green-400 text-xs font-bold mb-3">
                         <Leaf className="h-3 w-3 text-green-500" />
                         100% Traceable Circular Lifecycle
                     </div>
-                    <h1 className="text-4xl md:text-5xl font-black tracking-tighter text-gray-900 mb-4">
+                    <h1 className="text-4xl md:text-5xl font-black tracking-tighter text-gray-900 dark:text-white mb-4">
                         Traceability Lookup
                     </h1>
-                    <p className="text-md font-medium text-gray-500 max-w-xl mx-auto">
-                        Trace plastic waste from the exact Abuja community where it was recovered to the final upcycled product. 
+                    <p className="text-md font-medium text-gray-500 dark:text-gray-400 max-w-xl mx-auto">
+                        Trace plastic waste from the exact Abuja community where it was recovered to the final upcycled product.
                     </p>
                 </div>
 
                 {/* Search Box */}
-                <div className="bg-white rounded-3xl p-6 md:p-8 border border-gray-200/60 shadow-[0_8px_30px_rgb(0,0,0,0.02)] mb-8">
+                <div className="bg-white dark:bg-gray-900 rounded-3xl p-6 md:p-8 border border-gray-200/60 dark:border-gray-800 shadow-[0_8px_30px_rgb(0,0,0,0.02)] mb-8 transition-colors">
                     <form onSubmit={handleSearch} className="flex flex-col sm:flex-row gap-4 mb-6">
                         <div className="relative flex-1">
                             <Search className="absolute left-4 top-4 h-5 w-5 text-gray-400" />
@@ -283,7 +323,7 @@ export default function TraceabilityPage() {
                                 value={searchId}
                                 onChange={(e) => setSearchId(e.target.value)}
                                 placeholder="Enter Receipt ID (e.g. PT-839210 or RC-992011)"
-                                className="w-full pl-12 pr-4 py-3.5 border border-gray-300 rounded-2xl focus:ring-green-500 focus:border-green-500 font-medium text-gray-800"
+                                className="w-full pl-12 pr-4 py-3.5 border border-gray-300 dark:border-gray-800 dark:bg-gray-950 rounded-2xl focus:ring-green-500 focus:border-green-500 font-medium text-gray-800 dark:text-white"
                             />
                         </div>
                         <button type="submit" className="bg-green-600 hover:bg-green-700 text-white font-bold px-8 py-3.5 rounded-2xl transition-all shadow-md shadow-green-600/10">
@@ -295,18 +335,18 @@ export default function TraceabilityPage() {
 
                     {/* Quick Selection for Demo */}
                     <div className="flex flex-wrap items-center gap-2.5">
-                        <span className="text-xs font-extrabold text-gray-400 uppercase tracking-wider mr-2">Sample Logs:</span>
-                        {Object.keys(MOCK_TRACED_DATA).map((id) => (
+                        <span className="text-xs font-extrabold text-gray-400 dark:text-gray-500 uppercase tracking-wider mr-2">Sample Logs:</span>
+                        {Object.keys(allTracedData).map((id) => (
                             <button
                                 key={id}
                                 onClick={() => handleQuickSelect(id)}
                                 className={`px-4 py-2 rounded-xl text-xs font-bold border transition-all ${
                                     tracedResult?.id === id
-                                        ? "bg-green-50 border-green-200 text-green-700 font-extrabold"
-                                        : "bg-gray-50 border-gray-200 text-gray-500 hover:bg-gray-100"
+                                        ? "bg-green-50 dark:bg-green-950/30 border-green-200 dark:border-green-900/40 text-green-700 dark:text-green-400 font-extrabold"
+                                        : "bg-gray-50 dark:bg-gray-955 border-gray-250 dark:border-gray-800 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-900"
                                 }`}
                             >
-                                {id} ({MOCK_TRACED_DATA[id].itemName.split(' ')[0]})
+                                {id} ({allTracedData[id].itemName.split(' ')[0]})
                             </button>
                         ))}
                     </div>
@@ -320,7 +360,7 @@ export default function TraceabilityPage() {
                             <div className="absolute top-0 right-0 p-8 opacity-5">
                                 <Sparkles className="w-32 h-32" />
                             </div>
-                            
+
                             <div>
                                 <span className="bg-green-900/60 text-green-300 text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider border border-green-800/60">
                                     {tracedResult.type === "order" ? "Product Order Log" : "Recovery Receipt Log"}
@@ -349,52 +389,52 @@ export default function TraceabilityPage() {
                                 { label: "Carbon Offset", val: tracedResult.co2Saved, desc: "Greenhouse gas saved" },
                                 { label: "Landfill Volume", val: tracedResult.landfillSaved, desc: "Preserved space" }
                             ].map((stat, i) => (
-                                <div key={i} className="bg-white p-5 rounded-2xl border border-gray-200/50 shadow-sm text-center">
-                                    <span className="text-[10px] text-gray-400 font-bold uppercase tracking-wider block mb-1">{stat.label}</span>
-                                    <span className="text-xl font-black text-gray-800 block tracking-tight">{stat.val}</span>
-                                    <span className="text-[9px] text-gray-400 font-medium mt-1 block leading-normal">{stat.desc}</span>
+                                <div key={i} className="bg-white dark:bg-gray-900 p-5 rounded-2xl border border-gray-150 dark:border-gray-800 shadow-sm text-center transition-colors">
+                                    <span className="text-[10px] text-gray-400 dark:text-gray-500 font-bold uppercase tracking-wider block mb-1">{stat.label}</span>
+                                    <span className="text-xl font-black text-gray-800 dark:text-white block tracking-tight">{stat.val}</span>
+                                    <span className="text-[9px] text-gray-400 dark:text-gray-500 font-medium mt-1 block leading-normal">{stat.desc}</span>
                                 </div>
                             ))}
                         </div>
 
                         {/* Interactive Vertical Timeline */}
-                        <div className="bg-white rounded-3xl p-6 md:p-8 border border-gray-200/60 shadow-[0_8px_30px_rgb(0,0,0,0.02)]">
-                            <h3 className="text-lg font-black tracking-tight text-gray-900 mb-8 border-b border-gray-100 pb-4">
+                        <div className="bg-white dark:bg-gray-900 rounded-3xl p-6 md:p-8 border border-gray-200/60 dark:border-gray-800 shadow-[0_8px_30px_rgb(0,0,0,0.02)] transition-colors">
+                            <h3 className="text-lg font-black tracking-tight text-gray-900 dark:text-white mb-8 border-b border-gray-100 dark:border-gray-850 pb-4">
                                 Material Lifecycle Stepper
                             </h3>
 
-                            <div className="relative pl-6 md:pl-8 border-l-2 border-green-100 space-y-10 ml-4 py-2">
+                            <div className="relative pl-6 md:pl-8 border-l-2 border-green-100 dark:border-green-950 space-y-10 ml-4 py-2">
                                 {tracedResult.timeline.map((step, idx) => (
                                     <div key={idx} className="relative">
                                         {/* Timeline Dot Indicator */}
-                                        <div className="absolute -left-10 md:-left-12 top-0.5 flex items-center justify-center w-8 h-8 rounded-full bg-green-50 border-2 border-green-500 text-green-700 shadow-sm z-10">
+                                        <div className="absolute -left-10 md:-left-12 top-0.5 flex items-center justify-center w-8 h-8 rounded-full bg-green-50 dark:bg-green-950 border-2 border-green-500 dark:border-green-600 text-green-700 dark:text-green-400 shadow-sm z-10">
                                             {step.icon}
                                         </div>
 
                                         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                                             {/* Stepper Details */}
                                             <div className="md:col-span-3">
-                                                <h4 className="font-extrabold text-gray-900 text-base flex items-center gap-2">
+                                                <h4 className="font-extrabold text-gray-900 dark:text-white text-base flex items-center gap-2">
                                                     {step.title}
                                                 </h4>
-                                                <p className="text-gray-500 text-sm mt-1 font-medium leading-relaxed">
+                                                <p className="text-gray-550 dark:text-gray-400 text-sm mt-1 font-medium leading-relaxed">
                                                     {step.description}
                                                 </p>
-                                                
-                                                <div className="flex flex-wrap gap-x-4 gap-y-1.5 mt-3 text-xs text-gray-400 font-bold uppercase tracking-wider">
+
+                                                <div className="flex flex-wrap gap-x-4 gap-y-1.5 mt-3 text-xs text-gray-450 dark:text-gray-500 font-bold uppercase tracking-wider">
                                                     <span className="flex items-center gap-1">
-                                                        <MapPin className="w-3.5 h-3.5 text-gray-300" /> {step.location}
+                                                        <MapPin className="w-3.5 h-3.5 text-gray-300 dark:text-gray-700" /> {step.location}
                                                     </span>
                                                     <span>•</span>
                                                     <span className="flex items-center gap-1">
-                                                        <User className="w-3.5 h-3.5 text-gray-300" /> {step.operator}
+                                                        <User className="w-3.5 h-3.5 text-gray-300 dark:text-gray-700" /> {step.operator}
                                                     </span>
                                                 </div>
                                             </div>
 
                                             {/* Date info on right */}
-                                            <div className="md:col-span-1 text-left md:text-right border-t border-gray-100 md:border-0 pt-2 md:pt-0">
-                                                <span className="text-xs font-bold text-green-600 bg-green-50 px-3 py-1.5 rounded-full inline-block md:inline-flex items-center gap-1">
+                                            <div className="md:col-span-1 text-left md:text-right border-t border-gray-100 dark:border-gray-800 md:border-0 pt-2 md:pt-0">
+                                                <span className="text-xs font-bold text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950/30 px-3 py-1.5 rounded-full inline-block md:inline-flex items-center gap-1">
                                                     <Calendar className="w-3.5 h-3.5" /> {step.date}
                                                 </span>
                                             </div>
@@ -409,56 +449,56 @@ export default function TraceabilityPage() {
                 {/* Certificate Modal */}
                 {showCert && tracedResult && (
                     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-                        <div onClick={() => setShowCert(false)} className="absolute inset-0 bg-gray-900/60 backdrop-blur-md"></div>
-                        
-                        <div className="relative bg-white rounded-3xl shadow-2xl w-full max-w-xl overflow-hidden border border-gray-200 animate-scale-in">
+                        <div onClick={() => setShowCert(false)} className="absolute inset-0 bg-gray-950/60 backdrop-blur-md"></div>
+
+                        <div className="relative bg-white dark:bg-gray-900 rounded-3xl shadow-2xl w-full max-w-xl overflow-hidden border border-gray-200 dark:border-gray-800 animate-scale-in">
                             <button
                                 onClick={() => setShowCert(false)}
-                                className="absolute right-4 top-4 text-gray-400 hover:text-gray-600 bg-gray-50 p-2 rounded-xl transition-colors z-20"
+                                className="absolute right-4 top-4 text-gray-400 hover:text-gray-600 dark:hover:text-gray-250 bg-gray-50 dark:bg-gray-950 p-2 rounded-xl transition-colors z-20"
                             >
                                 <X className="w-5 h-5" />
                             </button>
 
                             {/* Certificate Inner Style */}
-                            <div className="p-8 md:p-12 text-center border-8 border-double border-yellow-700/20 m-3 rounded-2xl relative">
+                            <div className="p-8 md:p-12 text-center border-8 border-double border-yellow-700/20 m-3 rounded-2xl relative dark:bg-gray-900">
                                 <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_center,rgba(253,224,71,0.05)_0%,rgba(255,255,255,0)_70%)] pointer-events-none"></div>
-                                
+
                                 <div className="flex justify-center mb-6">
-                                    <div className="w-20 h-20 bg-yellow-50 text-yellow-600 border border-yellow-200/50 rounded-full flex items-center justify-center relative shadow-sm">
+                                    <div className="w-20 h-20 bg-yellow-50 dark:bg-yellow-950/30 text-yellow-600 dark:text-yellow-500 border border-yellow-200/50 dark:border-yellow-900/30 rounded-full flex items-center justify-center relative shadow-sm">
                                         <Sparkles className="w-10 h-10 animate-pulse-slow" />
-                                        <Award className="w-6 h-6 absolute text-yellow-700" />
+                                        <Award className="w-6 h-6 absolute text-yellow-700 dark:text-yellow-600" />
                                     </div>
                                 </div>
 
-                                <span className="text-xs font-extrabold uppercase tracking-widest text-yellow-700/80 block mb-2">PlastiTrackBES Circular Economy Pledge</span>
-                                <h2 className="text-3xl font-black text-gray-900 mb-6 tracking-tight font-serif">Certificate of Impact</h2>
-                                
-                                <p className="text-gray-500 text-xs italic font-medium leading-relaxed mb-6 max-w-md mx-auto">
-                                    This certifies that the lifecycle of transaction ID <strong className="text-gray-800 font-mono not-italic">{tracedResult.id}</strong> represents the verified recovery, sorting, and diversion of:
+                                <span className="text-xs font-extrabold uppercase tracking-widest text-yellow-700 dark:text-yellow-500 block mb-2">PlastiTrackBES Circular Economy Pledge</span>
+                                <h2 className="text-3xl font-black text-gray-900 dark:text-white mb-6 tracking-tight font-serif">Certificate of Impact</h2>
+
+                                <p className="text-gray-550 dark:text-gray-400 text-xs italic font-medium leading-relaxed mb-6 max-w-md mx-auto">
+                                    This certifies that the lifecycle of transaction ID <strong className="text-gray-800 dark:text-gray-200 font-mono not-italic">{tracedResult.id}</strong> represents the verified recovery, sorting, and diversion of:
                                 </p>
 
-                                <div className="bg-yellow-50/50 rounded-2xl p-6 border border-yellow-100 max-w-xs mx-auto mb-8 text-center">
-                                    <span className="text-[10px] text-yellow-800 font-extrabold uppercase tracking-widest block mb-1">Diverted Waste Tonnage</span>
-                                    <span className="text-4xl font-black text-yellow-900 tracking-tight block">{tracedResult.weight}</span>
-                                    <span className="text-[10px] text-yellow-700 font-bold uppercase tracking-wider mt-1 block">{tracedResult.material}</span>
+                                <div className="bg-yellow-50/50 dark:bg-yellow-950/20 rounded-2xl p-6 border border-yellow-100 dark:border-yellow-900/30 max-w-xs mx-auto mb-8 text-center">
+                                    <span className="text-[10px] text-yellow-800 dark:text-yellow-400 font-extrabold uppercase tracking-widest block mb-1">Diverted Waste Tonnage</span>
+                                    <span className="text-4xl font-black text-yellow-900 dark:text-yellow-500 tracking-tight block">{tracedResult.weight}</span>
+                                    <span className="text-[10px] text-yellow-700 dark:text-yellow-450 font-bold uppercase tracking-wider mt-1 block">{tracedResult.material}</span>
                                 </div>
 
-                                <div className="space-y-2 text-xs text-gray-500 font-semibold mb-8">
-                                    <p className="flex justify-between border-b border-gray-100 pb-2">
+                                <div className="space-y-2 text-xs text-gray-500 dark:text-gray-450 font-semibold mb-8">
+                                    <p className="flex justify-between border-b border-gray-100 dark:border-gray-850 pb-2">
                                         <span>Environmental Certificate No:</span>
-                                        <span className="font-mono text-gray-800 font-bold">{tracedResult.certificateNo}</span>
+                                        <span className="font-mono text-gray-800 dark:text-gray-200 font-bold">{tracedResult.certificateNo}</span>
                                     </p>
-                                    <p className="flex justify-between border-b border-gray-100 pb-2">
+                                    <p className="flex justify-between border-b border-gray-100 dark:border-gray-850 pb-2">
                                         <span>CO2 Emissions Offset:</span>
-                                        <span className="text-gray-800 font-bold">{tracedResult.co2Saved} CO2</span>
+                                        <span className="text-gray-800 dark:text-gray-200 font-bold">{tracedResult.co2Saved} CO2</span>
                                     </p>
-                                    <p className="flex justify-between border-b border-gray-100 pb-2">
+                                    <p className="flex justify-between border-b border-gray-100 dark:border-gray-850 pb-2">
                                         <span>Sorting Recovery Hub:</span>
-                                        <span className="text-gray-800 font-bold">{tracedResult.hub}</span>
+                                        <span className="text-gray-800 dark:text-gray-200 font-bold">{tracedResult.hub}</span>
                                     </p>
                                     <p className="flex justify-between">
                                         <span>Upcycle Workshop Partner:</span>
-                                        <span className="text-gray-800 font-bold">Blessn Evea Signature</span>
+                                        <span className="text-gray-800 dark:text-gray-200 font-bold">Blessn Evea Signature</span>
                                     </p>
                                 </div>
 

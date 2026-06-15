@@ -120,6 +120,16 @@ Our project doesn't just collect plastic; it executes the exact mandates of our 
 
 ---
 
+## 🤝 Local Execution Partners & Ecosystem
+
+*Strong alliances on the ground driving day-to-day operations.*
+
+- **Abuja Environmental Protection Board (AEPB):** Collaboration on municipal waste management permits and collection logistics.
+- **AMAC Municipal Council:** Local government endorsement and provision of safe hub spaces in Kuchingoro and Durumi.
+- **Local Eco-Clubs:** Active school partnerships embedding recycling habits in preteens and teens directly in schools.
+
+---
+
 ## 📍 Track Record: Successful Sensitization
 
 **Phase 1: Preteen & Teen Creative Upcycling**
@@ -192,9 +202,40 @@ Closing the loop means giving waste absolute value. We manufacture highly afford
 - **Recycled Keychains:** Vibrant, durable daily-use items. (₦2,000)
 - **Upcycled Earrings:** Elegant PET eco-jewelry. (₦3,000)
 - **Recycled Bangles:** Fashionable HDPE bands. (₦4,500)
+- **PET Broom:** Durable and eco-friendly broom made from repurposed PET plastic bottles. (₦10,000)
 - **ReVamp Trial Discs:** Demonstrating structural integrity for future eco-pavers and modular furniture. (₦5,000 - ₦5,500)
 
 *Every product guarantees traceability back to the plastic type and weight diverted.*
+
+---
+
+## 💼 Sustainable Business Model
+
+*Multiple revenue streams to ensure financial independence.*
+
+- **Upcycled Product Sales (B2C & B2B):** Selling premium upcycled items (Earrings, Keychains, Home decor, Eco-Pavers) to green consumers and corporate partners for branded ESG gifting.
+- **Raw Material Supply:** Selling clean, color-sorted PET flakes and HDPE shredded regrind to large-scale manufacturers.
+- **Traceability as a Service (TaaS):** Charging B2B FMCG partners a subscription to trace their EPR (Extended Producer Responsibility) compliance points live on our dashboard.
+
+---
+
+## 🔄 Financial Sustainability & Exit Plan
+
+*Transitioning from pilot funding to self-sustaining circular operations.*
+
+- **18-Month Break-Even:** Moving to a fully self-sustained operational model financed entirely by upcycled product sales and corporate EPR contracts.
+- **EPR (Extended Producer Responsibility) Integration:** Serving as a licensed recovery partner for beverage companies needing to fulfill national plastic recycling quotas.
+- **Verifiable Carbon Offsets:** Monetizing verified plastic diversion data into local green certificates for corporate carbon offset buyers.
+
+---
+
+## 🍃 Eco-Friendly Green Computing MVP
+*Innovative technology aligned with environmental preservation.*
+
+- **Low-Carbon Hosting:** The PlastiTrackBES platform is hosted in green cloud regions running on 100% renewable wind and solar energy.
+- **Client-Side Eco Mode:** A functional user toggle that disables heavy CPU animation loops and graphic repaints, saving device battery power by up to 25%.
+- **Next.js Static Compilation:** Server rendering overhead is reduced to zero by pre-rendering public pages (SSG/ISR), preventing continuous database compute waste.
+- **OLED Energy Savings:** Built-in Dark Theme reduces screen brightness power usage by up to 60% on mobile displays.
 
 ---
 
