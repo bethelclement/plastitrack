@@ -85,27 +85,12 @@ export function Navbar() {
                 <div className="flex justify-between h-16">
                     <div className="flex">
                         <Link href="/" className="flex-shrink-0 flex items-center gap-2.5 group">
-                            {/* Transparent logo — adapts to dark/light via CSS filter */}
-                            <div className="relative flex-shrink-0 w-10 h-10 flex items-center justify-center">
-                                <img
-                                    src="/plastitrackbes-logo-nobg.png"
-                                    alt="PlastiTrackBES Logo"
-                                    className="navbar-logo-img w-10 h-10 object-contain
-                                        dark:[filter:brightness(0)_saturate(100%)_invert(48%)_sepia(79%)_saturate(396%)_hue-rotate(86deg)_brightness(95%)_contrast(89%)]
-                                        [filter:brightness(0)_saturate(100%)_invert(31%)_sepia(100%)_saturate(400%)_hue-rotate(120deg)_brightness(80%)_contrast(100%)]
-                                        transition-all duration-300 group-hover:scale-110"
-                                    style={{ imageRendering: 'crisp-edges' }}
-                                />
-                            </div>
-                            {/* Wordmark */}
-                            <div className="flex flex-col leading-none">
-                                <span className="font-black text-xl tracking-tight text-emerald-800 dark:text-emerald-400 transition-colors duration-200">
-                                    Plasti<span className="text-emerald-600 dark:text-green-300">Track</span><span className="text-emerald-900 dark:text-white">BES</span>
-                                </span>
-                                <span className="text-[9px] font-bold tracking-widest uppercase text-emerald-600/70 dark:text-green-500/60 leading-none mt-0.5">
-                                    Track · Recycle · Sustain
-                                </span>
-                            </div>
+                            {/* User's real logo — white bg removed, adapts to dark/light */}
+                            <img
+                                src="/plastitrackbes-logo-nobg.png"
+                                alt="PlastiTrackBES Logo"
+                                className="navbar-logo-img h-12 w-auto object-contain transition-all duration-300 group-hover:scale-105 group-hover:drop-shadow-[0_2px_8px_rgba(4,120,87,0.4)]"
+                            />
                         </Link>
                         <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
                             <Link href="/about" className="border-transparent text-gray-500 dark:text-gray-400 hover:border-gray-300 hover:text-gray-700 dark:hover:text-gray-200 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-colors">

@@ -170,12 +170,13 @@ layer base {
 }
 
 /* ── Logo: No-Background Smart Blending ────────────────────────────────── */
-/* Light mode: multiply removes residual whites, icon merges with white navbar */
+/* Light mode: multiply blend removes residual whites, icon merges with white navbar */
 .navbar-logo-img {
   mix-blend-mode: multiply;
   image-rendering: crisp-edges;
 }
-/* Dark mode: screen blend pops the green icon on dark bg */
+/* Dark mode: brighten dark-green artwork to light green so it reads on dark bg */
 .dark .navbar-logo-img {
-  mix-blend-mode: screen;
+  mix-blend-mode: normal;
+  filter: brightness(0) saturate(100%) invert(72%) sepia(60%) saturate(450%) hue-rotate(90deg) brightness(105%) contrast(95%);
 }
