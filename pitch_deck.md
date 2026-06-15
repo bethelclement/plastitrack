@@ -249,14 +249,30 @@ With the **DPI-SGP 2.0 Top 10 Funding**, we will aggressively scale:
 
 ---
 
+<!-- _class: split -->
+
+## 📱 Scan & Explore our Live MVP
+*Scan to experience our circular tracker, interactive hubs map, and green-mode settings.*
+
+- **Live URL:** [plastitrackbes.vercel.app](https://plastitrackbes.vercel.app)
+- **Interactive Features:** Real-time impact calculator, Hub leaderboard standings, and dynamic Traceability stepper lookup.
+- **Eco-Friendly MVP:** Built with client-side animation toggling to save device CPU cycles.
+
+![w:280 right drop-shadow rounded-xl](https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://plastitrackbes.vercel.app&color=047857)
+
+---
+
 <!-- _class: title-slide -->
 
 # Thank You.
 
 ### Let's Build a Circular Nigeria, Together.
 
-**Live Platform:** plastitrackbes.vercel.app
+![w:150 center drop-shadow rounded-xl mt-4 mb-4](https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://plastitrackbes.vercel.app&color=ffffff&bgcolor=047857)
+
+**Live Platform:** [plastitrackbes.vercel.app](https://plastitrackbes.vercel.app)
 **Contact:** safe@plastitrackbes.org
 
 *Proudly presented by Team BES.*
+
 
