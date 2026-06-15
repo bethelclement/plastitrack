@@ -84,13 +84,22 @@ export function Navbar() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between h-16">
                     <div className="flex">
-                        <Link href="/" className="flex-shrink-0 flex items-center gap-2.5 group">
+                        <Link href="/" className="flex-shrink-0 flex items-center gap-3 group">
                             {/* User's real logo — white bg removed, adapts to dark/light */}
                             <img
                                 src="/plastitrackbes-logo-nobg.png"
                                 alt="PlastiTrackBES Logo"
                                 className="navbar-logo-img h-12 w-auto object-contain transition-all duration-300 group-hover:scale-105 group-hover:drop-shadow-[0_2px_8px_rgba(4,120,87,0.4)]"
                             />
+                            {/* Bold Logo Wordmark */}
+                            <div className="flex flex-col text-left leading-none select-none">
+                                <span className="font-black text-2xl tracking-tighter text-emerald-800 dark:text-emerald-450 transition-colors duration-200">
+                                    Plasti<span className="text-emerald-600 dark:text-green-300">Track</span><span className="text-emerald-950 dark:text-white font-black">BES</span>
+                                </span>
+                                <span className="text-[10px] font-black tracking-widest uppercase text-emerald-600/70 dark:text-green-500/60 leading-none mt-1">
+                                    Track · Recycle · Sustain
+                                </span>
+                            </div>
                         </Link>
                         <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
                             <Link href="/about" className="border-transparent text-gray-500 dark:text-gray-400 hover:border-gray-300 hover:text-gray-700 dark:hover:text-gray-200 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-colors">

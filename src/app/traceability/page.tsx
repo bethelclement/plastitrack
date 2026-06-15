@@ -229,6 +229,118 @@ const MOCK_TRACED_DATA: Record<string, TracedData> = {
                 icon: <MapPin className="w-5 h-5" />
             }
         ]
+    },
+    "PT-642189": {
+        id: "PT-642189",
+        type: "order",
+        itemName: "UpTex Plastic Wristbands (Wristbeads)",
+        contributor: "Aisha M. (Kuchingoro household)",
+        hub: "Kuchingoro Garamajiji Hub",
+        material: "PET Bottle Offcuts",
+        weight: "0.012 kg",
+        co2Saved: "0.018 kg",
+        landfillSaved: "0.36 Liters",
+        energySaved: "0.07 kWh",
+        points: 2,
+        certificateNo: "CERT-2026-642189",
+        timeline: [
+            {
+                title: "Material Collection",
+                description: "Recovered clear PET plastic bottle offcuts from community collection bins in Kuchingoro.",
+                date: "June 10, 2026",
+                location: "Kuchingoro settlement, Abuja",
+                operator: "Aisha M. (Eco Contributor)",
+                icon: <Leaf className="w-5 h-5" />
+            },
+            {
+                title: "Weighing & Digital Logging",
+                description: "Materials logged. 2 tracking points issued to contributor account balance.",
+                date: "June 11, 2026",
+                location: "Kuchingoro Garamajiji Hub",
+                operator: "Fatima Yusuf (Hub Officer)",
+                icon: <ShieldCheck className="w-5 h-5" />
+            },
+            {
+                title: "Sorting & Clean Processing",
+                description: "PET bottles sorted by thickness, labels and adhesives removed, and cut into petal beads.",
+                date: "June 12, 2026",
+                location: "UpTex Processing Depot, Abuja",
+                operator: "Blessing E. (Sorting Lead)",
+                icon: <MapPin className="w-5 h-5" />
+            },
+            {
+                title: "UpTex Craft Assembly",
+                description: "Beads hand-assembled, polished, and threaded with premium pearl accents into Wristbeads.",
+                date: "June 14, 2026",
+                location: "UpTex ReVamp Workshop, Abuja",
+                operator: "UpTex Craft Team",
+                icon: <Award className="w-5 h-5" />
+            },
+            {
+                title: "Secure Order Fulfillment",
+                description: "Purchased via Vercel Live MVP. CO2 offsets verified and dispatched via green delivery routes.",
+                date: "June 15, 2026",
+                location: "Abuja Central Delivery Route",
+                operator: "Bethel Clement (Customer Order #642)",
+                icon: <ShoppingBag className="w-5 h-5" />
+            }
+        ]
+    },
+    "PT-702315": {
+        id: "PT-702315",
+        type: "order",
+        itemName: "UpTex Loop Game",
+        contributor: "Durumi Eco-Club A",
+        hub: "Durumi Settlement Hub",
+        material: "HDPE Plastic Bottle Caps",
+        weight: "0.030 kg",
+        co2Saved: "0.045 kg",
+        landfillSaved: "0.90 Liters",
+        energySaved: "0.17 kWh",
+        points: 5,
+        certificateNo: "CERT-2026-702315",
+        timeline: [
+            {
+                title: "Eco-Club Collection Drive",
+                description: "Collected 6 HDPE plastic bottle caps during a school edutainment collection campaign.",
+                date: "June 5, 2026",
+                location: "AMAC Durumi School District",
+                operator: "Durumi Eco-Club A (Youth Advocates)",
+                icon: <Leaf className="w-5 h-5" />
+            },
+            {
+                title: "Hub Digital Ledger Check",
+                description: "Weighed and checked for color-sorting compatibility. 5 environmental points issued.",
+                date: "June 6, 2026",
+                location: "Durumi Hub Office",
+                operator: "Grace Daniel (Hub Coordinator)",
+                icon: <ShieldCheck className="w-5 h-5" />
+            },
+            {
+                title: "Resin Processing & Sorting",
+                description: "Caps washed and sanitized. Storage can selected and prepared for cap housing.",
+                date: "June 8, 2026",
+                location: "UpTex Processing Depot, Abuja",
+                operator: "Blessing E. (Sorting Lead)",
+                icon: <MapPin className="w-5 h-5" />
+            },
+            {
+                title: "Game Layout Design",
+                description: "Board custom laminated. Storage can fused. 6 HDPE caps sorted (3 yellow, 3 blue) and stored.",
+                date: "June 13, 2026",
+                location: "UpTex ReVamp Workshop, Abuja",
+                operator: "UpTex Studio (Blessing Evea Onwe)",
+                icon: <Award className="w-5 h-5" />
+            },
+            {
+                title: "Secure Purchase & Checkout",
+                description: "Ordered via store. Diverting caps from Abuja drainages, promoting edutainment.",
+                date: "June 15, 2026",
+                location: "AMAC Area delivery hub",
+                operator: "Chioma N. (Customer Order #702)",
+                icon: <ShoppingBag className="w-5 h-5" />
+            }
+        ]
     }
 };
 

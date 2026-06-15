@@ -23,7 +23,7 @@ const MOCK_PRODUCTS = [
         era: "uptex",
         name: "UpTex Plastic Earrings Collection",
         description:
-            "Stunning hand-crafted earrings and bracelets from shredded and molded PET & HDPE single-use plastics. Each piece is unique — colours come from sorted bottle pigmentation. Includes leafy, butterfly, floral and geometric designs displayed on branded UpTex cards.",
+            "Stunning hand-crafted earrings from shredded & moulded PET/HDPE plastics. Colours come from sorted bottle pigmentation — no dyes used. Leafy, butterfly, floral & geometric designs each mounted on branded UpTex display cards. Every card is part of the product presentation.",
         price: 2500,
         category: "Accessories & Jewellery",
         images: ["/images/uptex-earrings.jpg"],
@@ -32,6 +32,26 @@ const MOCK_PRODUCTS = [
         plastic_weight_g: 8,
         bottles_diverted: "~1–2 PET bottle caps or fragments per pair",
         co2_saved_g: 12,
+        made_by: "UpTex Studio (Blessing Evea Onwe)",
+        hub: "UpTex ReVamp Workshop, Abuja",
+        era_label: "June 2026 — UpTex Rebranded",
+        badge: "New Arrival",
+        badgeColor: "emerald",
+    },
+    {
+        id: "u1b",
+        era: "uptex",
+        name: "UpTex Plastic Wristbands (Wristbeads)",
+        description:
+            "Upcycled wristbands made from PET bottle offcuts cut into petals & beads, threaded with pearl accents and glass beads. Available in red, green, gold, black, white and multi-colour. Lightweight, vibrant and 100% plastic-waste-derived. Each band keeps bottle fragments out of drainage channels.",
+        price: 1500,
+        category: "Accessories & Jewellery",
+        images: ["/images/uptex-wristbands.jpg"],
+        plastic_used: "PET bottle offcuts cut into petal/bead shapes",
+        plastic_type: "PET (Type 1)",
+        plastic_weight_g: 12,
+        bottles_diverted: "~1 standard PET bottle per band",
+        co2_saved_g: 18,
         made_by: "UpTex Studio (Blessing Evea Onwe)",
         hub: "UpTex ReVamp Workshop, Abuja",
         era_label: "June 2026 — UpTex Rebranded",
@@ -83,10 +103,10 @@ const MOCK_PRODUCTS = [
         era: "uptex",
         name: "UpTex Loop Game",
         description:
-            "Our circular-economy board game designed to drive edutainment and positive behaviour change in youths. Players use plastic bottle caps as game pieces on a 3×3 grid board. Each board set comes with a dedicated storage can housing 6 bottle caps (3 blue, 3 yellow) — reinforcing the message that plastic has value. Designed by Blessing Evea Onwe. Inspired by SGP Nigeria, GEF, Digital Peers & Plastic Waste Solutions 2.0.",
+            "Our circular-economy board game driving edutainment & positive behaviour change in youths. Uses HDPE bottle caps as game pieces on a 3×3 grid. Each board set has a storage can housing 6 caps (3 blue, 3 yellow). First to get 3-in-a-row wins — every move teaches closing the loop! Designed by Blessing Evea Onwe. Inspired by SGP Nigeria, GEF, Digital Peers & Plastic Waste Solutions 2.0.",
         price: 7000,
         category: "Educational Game",
-        images: ["/images/uptex-loop-game.jpg", "/images/uptex-loop-game-board.jpg"],
+        images: ["/images/uptex-loop-game.jpg", "/images/uptex-loop-game-rules.jpg", "/images/uptex-loop-game-board.jpg"],
         plastic_used: "6 HDPE bottle caps per set (storage can + game pieces)",
         plastic_type: "HDPE (Type 2) — bottle caps",
         plastic_weight_g: 30,
@@ -378,8 +398,8 @@ export default function StorePage() {
     const uptexProducts = MOCK_PRODUCTS.filter(p => p.era === "uptex");
     const besProducts   = MOCK_PRODUCTS.filter(p => p.era === "bes");
 
-    const filteredUpTex = selectedCategory === "All" || selectedCategory === "UpTex New Arrivals" || selectedCategory === "Educational Game"
-        ? uptexProducts.filter(p => selectedCategory === "All" || p.category === selectedCategory)
+    const filteredUpTex = selectedCategory === "All" || selectedCategory === "UpTex New Arrivals"
+        ? uptexProducts
         : uptexProducts.filter(p => p.category === selectedCategory);
 
     const filteredBes = selectedCategory === "All" || !["UpTex New Arrivals","Educational Game"].includes(selectedCategory)
@@ -423,15 +443,40 @@ export default function StorePage() {
         setCustomerAddress("");
     };
 
-    const ProductCard = ({ product }: { product: any }) => (
+    const ProductCard = ({ product }: { product: any }) => {
+        const [imgIdx, setImgIdx] = useState(0);
+        return (
         <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-sm border border-gray-150 dark:border-gray-800/80 overflow-hidden flex flex-col group hover:shadow-lg dark:hover:shadow-green-950/20 transition-all duration-300">
-            {/* Image */}
+            {/* Image carousel */}
             <div className="h-64 relative overflow-hidden bg-gray-50 dark:bg-gray-950">
                 <img
-                    src={product.images[0]}
+                    src={product.images[imgIdx]}
                     alt={product.name}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
+                {/* Multi-image dots */}
+                {product.images.length > 1 && (
+                    <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5">
+                        {product.images.map((_: string, i: number) => (
+                            <button key={i} onClick={() => setImgIdx(i)}
+                                className={`w-2 h-2 rounded-full transition-all ${i === imgIdx ? 'bg-white scale-125' : 'bg-white/50'}`}
+                            />
+                        ))}
+                    </div>
+                )}
+                {/* Arrows for multi-image */}
+                {product.images.length > 1 && (
+                    <>
+                        <button onClick={() => setImgIdx((imgIdx - 1 + product.images.length) % product.images.length)}
+                            className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/60 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm transition-all">
+                            ‹
+                        </button>
+                        <button onClick={() => setImgIdx((imgIdx + 1) % product.images.length)}
+                            className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/60 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm transition-all">
+                            ›
+                        </button>
+                    </>
+                )}
                 <div className="absolute top-3 right-3 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm px-3 py-1.5 rounded-full text-sm font-black text-gray-900 dark:text-white shadow border border-gray-150 dark:border-gray-800">
                     ₦{product.price.toLocaleString()}
                 </div>
@@ -439,7 +484,7 @@ export default function StorePage() {
                     <Badge label={product.badge} color={product.badgeColor} />
                 </div>
                 {product.game_note && (
-                    <div className="absolute bottom-3 left-3 right-3 bg-blue-900/80 backdrop-blur-sm text-white text-[10px] font-bold px-3 py-1.5 rounded-lg flex items-center gap-1.5">
+                    <div className="absolute bottom-10 left-3 right-3 bg-blue-900/80 backdrop-blur-sm text-white text-[10px] font-bold px-3 py-1.5 rounded-lg flex items-center gap-1.5">
                         <Gamepad2 className="w-3 h-3 shrink-0" />
                         {product.game_note}
                     </div>
@@ -448,33 +493,46 @@ export default function StorePage() {
 
             {/* Content */}
             <div className="p-5 flex-1 flex flex-col">
-                <div className="flex items-start justify-between gap-2 mb-2">
-                    <h3 className="text-lg font-bold text-gray-900 dark:text-white tracking-tight leading-snug">{product.name}</h3>
-                </div>
+                <h3 className="text-lg font-black text-gray-900 dark:text-white tracking-tight leading-snug mb-1">{product.name}</h3>
                 <p className="text-gray-500 dark:text-gray-400 text-xs mb-4 flex-1 leading-relaxed">{product.description}</p>
 
                 <PlasticStats product={product} />
 
                 <button
                     onClick={() => setCheckoutProduct(product)}
-                    className="w-full bg-gray-900 dark:bg-gray-800 text-white py-3 px-4 rounded-xl font-semibold text-sm hover:bg-primary dark:hover:bg-primary transition-colors flex items-center justify-center gap-2 group-hover:bg-primary"
+                    className="w-full bg-gray-900 dark:bg-gray-800 text-white py-3 px-4 rounded-xl font-black text-sm hover:bg-primary dark:hover:bg-primary transition-colors flex items-center justify-center gap-2 group-hover:bg-primary"
                 >
                     Order Now <ChevronRight className="w-4 h-4" />
                 </button>
             </div>
         </div>
-    );
+        );
+    };
 
     return (
         <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-950 transition-colors duration-200">
             {/* Header */}
             <div className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 text-center">
-                    <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white tracking-tight mb-4">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center">
+                    {/* Logo + Wordmark */}
+                    <div className="flex items-center justify-center gap-4 mb-6">
+                        <img
+                            src="/plastitrackbes-logo-nobg.png"
+                            alt="PlastiTrackBES"
+                            className="navbar-logo-img h-16 w-auto object-contain"
+                        />
+                        <div className="text-left">
+                            <div className="font-black text-3xl md:text-4xl tracking-tight text-emerald-800 dark:text-emerald-400 leading-none">
+                                Plasti<span className="text-emerald-600 dark:text-green-300">Track</span><span className="text-emerald-900 dark:text-white">BES</span>
+                            </div>
+                            <div className="text-[10px] font-black tracking-widest uppercase text-emerald-600/70 dark:text-green-500/60 mt-1">Track · Recycle · Sustain</div>
+                        </div>
+                    </div>
+                    <h1 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white tracking-tight mb-4">
                         ReVamp! Store
                     </h1>
                     <p className="max-w-2xl mx-auto text-lg text-gray-500 dark:text-gray-400">
-                        Every product comes with <strong>full plastic traceability</strong> — exact type, weight diverted from landfill, and CO₂ savings. New UpTex arrivals on top, original BES collection below.
+                        Every product comes with <strong>full plastic traceability</strong> — exact type, weight diverted from landfill, and CO₂ savings. UpTex June arrivals on top · Original BES May collection below.
                     </p>
                 </div>
                 {/* Category Nav */}
