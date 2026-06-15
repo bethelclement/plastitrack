@@ -168,3 +168,14 @@ layer base {
   transition: none !important;
   scroll-behavior: auto !important;
 }
+
+/* ── Logo: No-Background Smart Blending ────────────────────────────────── */
+/* Light mode: multiply removes residual whites, icon merges with white navbar */
+.navbar-logo-img {
+  mix-blend-mode: multiply;
+  image-rendering: crisp-edges;
+}
+/* Dark mode: screen blend pops the green icon on dark bg */
+.dark .navbar-logo-img {
+  mix-blend-mode: screen;
+}
