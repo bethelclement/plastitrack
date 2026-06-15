@@ -337,7 +337,7 @@ We practice green computing. Our digital architecture is hosted in carbon-neutra
 # Thank You.
 ### Let's Build a Circular Nigeria, Together.
 
-![w:180 center-img mt-4 mb-4](https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://plastitrackbes.vercel.app&color=ffffff&bgcolor=047857)
+![w:180 center-img mt-4 mb-4](./public/images/qr-code-white.png)
 
 **Live MVP Platform:** [plastitrackbes.vercel.app](https://plastitrackbes.vercel.app)
 **Contact:** safe@plastitrackbes.org
