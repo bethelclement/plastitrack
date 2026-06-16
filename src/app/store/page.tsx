@@ -26,7 +26,7 @@ const MOCK_PRODUCTS = [
             "Stunning hand-crafted earrings from shredded & moulded PET/HDPE plastics. Colours come from sorted bottle pigmentation — no dyes used. Leafy, butterfly, floral & geometric designs each mounted on branded UpTex display cards. Every card is part of the product presentation.",
         price: 2500,
         category: "Accessories & Jewellery",
-        images: ["/images/uptex-earrings.jpg"],
+        images: ["/images/uptex-model-display-1.jpg", "/images/uptex-earring-display-cards.jpg", "/images/uptex-model-display-2.jpg", "/images/uptex-earrings.jpg"],
         plastic_used: "PET bottles & HDPE lids",
         plastic_type: "PET (Type 1) + HDPE (Type 2)",
         plastic_weight_g: 8,
@@ -46,7 +46,7 @@ const MOCK_PRODUCTS = [
             "Upcycled wristbands made from PET bottle offcuts cut into petals & beads, threaded with pearl accents and glass beads. Available in red, green, gold, black, white and multi-colour. Lightweight, vibrant and 100% plastic-waste-derived. Each band keeps bottle fragments out of drainage channels.",
         price: 1500,
         category: "Accessories & Jewellery",
-        images: ["/images/uptex-wristbands.jpg"],
+        images: ["/images/uptex-model-closeup.jpg", "/images/uptex-model-basket-1.jpg", "/images/uptex-wristbands.jpg"],
         plastic_used: "PET bottle offcuts cut into petal/bead shapes",
         plastic_type: "PET (Type 1)",
         plastic_weight_g: 12,
@@ -189,7 +189,7 @@ const MOCK_PRODUCTS = [
             "Elegant, stylish earrings from recovered single-use PET and HDPE plastics. The original BES branded collection — precursor to the current UpTex line.",
         price: 3000,
         category: "Accessories & Jewellery",
-        images: ["/images/earring-model.jpg", "/images/earring-close.jpg"],
+        images: ["/images/uptex-model-basket-2.jpg", "/images/earring-model.jpg", "/images/earring-close.jpg"],
         plastic_used: "PET + HDPE bottle fragments",
         plastic_type: "PET (Type 1) + HDPE (Type 2)",
         plastic_weight_g: 8,
@@ -511,32 +511,115 @@ export default function StorePage() {
 
     return (
         <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-950 transition-colors duration-200">
-            {/* Header */}
-            <div className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center">
-                    {/* Logo + Wordmark */}
-                    <div className="flex items-center justify-center gap-4 mb-6">
-                        <img
-                            src="/plastitrackbes-logo-nobg.png"
-                            alt="PlastiTrackBES"
-                            className="navbar-logo-img h-16 w-auto object-contain"
-                        />
-                        <div className="text-left">
-                            <div className="font-black text-3xl md:text-4xl tracking-tight text-emerald-800 dark:text-emerald-400 leading-none">
-                                Plasti<span className="text-emerald-600 dark:text-green-300">Track</span><span className="text-emerald-900 dark:text-white">BES</span>
+            {/* ═══════════════════════════════════════════════════════════════════ */}
+            {/* CINEMATIC HERO HEADER */}
+            {/* ═══════════════════════════════════════════════════════════════════ */}
+            <div className="relative bg-emerald-950 dark:bg-gray-950 overflow-hidden">
+                {/* Background mesh gradient */}
+                <div className="absolute inset-0 bg-gradient-to-br from-emerald-950 via-emerald-900 to-teal-950 opacity-90" />
+                <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-emerald-400/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/4" />
+                <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-teal-400/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/4" />
+
+                <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 min-h-[600px] items-stretch">
+
+                        {/* LEFT: Marketing copy */}
+                        <div className="flex flex-col justify-center py-16 pr-0 lg:pr-12">
+                            {/* Logo strip */}
+                            <div className="flex items-center gap-3 mb-8">
+                                <img src="/plastitrackbes-logo-nobg.png" alt="PlastiTrackBES" className="h-10 w-auto brightness-[10] opacity-90" />
+                                <div>
+                                    <div className="font-black text-xl tracking-tight text-white leading-none">PlastiTrack<span className="text-emerald-400">BES</span></div>
+                                    <div className="text-[9px] font-bold tracking-widest uppercase text-emerald-400/70">Track · Recycle · Sustain</div>
+                                </div>
                             </div>
-                            <div className="text-[10px] font-black tracking-widest uppercase text-emerald-600/70 dark:text-green-500/60 mt-1">Track · Recycle · Sustain</div>
+
+                            <span className="inline-block text-[11px] font-black uppercase tracking-widest text-emerald-400 bg-emerald-400/10 border border-emerald-400/20 px-4 py-1.5 rounded-full mb-5 w-max">
+                                ✦ ReVamp! Store — June 2026 Collection
+                            </span>
+
+                            <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-white tracking-tight leading-[0.9] mb-6">
+                                WEAR THE<br/>
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-300">CHANGE.</span>
+                            </h1>
+
+                            <p className="text-emerald-100/80 text-lg leading-relaxed mb-8 max-w-md font-medium">
+                                Every piece of jewellery you wear from us is a bottle rescued from Abuja's drains.
+                                Real plastic. Real impact. Fully traced.
+                            </p>
+
+                            {/* 3 reasons to buy */}
+                            <div className="space-y-3 mb-10">
+                                {[
+                                    { icon: "♻️", title: "100% Upcycled", desc: "No virgin plastic. Every earring, bead and wristband is recovered PET or HDPE." },
+                                    { icon: "🔍", title: "Fully Traceable", desc: "Scan your order ID to see who collected the plastic, when, and where it was made." },
+                                    { icon: "💚", title: "Community Owned", desc: "Made by women in Kuchingoro & Durumi. Your purchase is their paycheck." },
+                                ].map(r => (
+                                    <div key={r.title} className="flex items-start gap-3 group">
+                                        <span className="text-xl mt-0.5 shrink-0">{r.icon}</span>
+                                        <div>
+                                            <span className="font-black text-white text-sm block">{r.title}</span>
+                                            <span className="text-emerald-200/60 text-xs leading-relaxed">{r.desc}</span>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+
+                            <div className="flex flex-wrap gap-3">
+                                <a href="#products" className="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-white font-black px-7 py-3.5 rounded-xl transition-all hover:scale-[1.02] shadow-lg shadow-emerald-500/25 text-sm">
+                                    Shop Now ↓
+                                </a>
+                                <a href="/traceability" className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-bold px-7 py-3.5 rounded-xl transition-all border border-white/20 text-sm">
+                                    Verify Plastic ↗
+                                </a>
+                            </div>
+                        </div>
+
+                        {/* RIGHT: Two-photo creative collage */}
+                        <div className="relative hidden lg:flex items-center justify-center py-8">
+                            {/* Main portrait photo */}
+                            <div className="relative z-10 ml-8">
+                                <img
+                                    src="/images/uptex-model-basket-2.jpg"
+                                    alt="UpTex model showcasing earrings collection"
+                                    className="w-72 h-[480px] object-cover object-top rounded-3xl shadow-2xl shadow-black/50 border-4 border-emerald-400/20"
+                                />
+                                {/* Floating label on main photo */}
+                                <div className="absolute -bottom-4 -left-4 bg-emerald-500 text-white px-4 py-2.5 rounded-2xl shadow-lg shadow-emerald-500/30">
+                                    <p className="text-[10px] font-black uppercase tracking-widest text-emerald-100">UpTex June Drop</p>
+                                    <p className="text-base font-black">From ₦1,500</p>
+                                </div>
+                            </div>
+                            {/* Second smaller photo offset behind */}
+                            <div className="absolute right-4 top-12">
+                                <img
+                                    src="/images/uptex-earring-display-cards.jpg"
+                                    alt="UpTex earring display cards outdoor"
+                                    className="w-52 h-[320px] object-cover object-top rounded-2xl shadow-2xl shadow-black/40 border-2 border-white/10 rotate-2"
+                                />
+                                {/* Floating badge on product photo */}
+                                <div className="absolute -top-3 -right-3 bg-white text-emerald-900 px-3 py-1.5 rounded-full shadow-lg">
+                                    <p className="text-[10px] font-black uppercase tracking-wide">♻ 0% Dyes</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <h1 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white tracking-tight mb-4">
-                        ReVamp! Store
-                    </h1>
-                    <p className="max-w-2xl mx-auto text-lg text-gray-500 dark:text-gray-400">
-                        Every product comes with <strong>full plastic traceability</strong> — exact type, weight diverted from landfill, and CO₂ savings. UpTex June arrivals on top · Original BES May collection below.
-                    </p>
                 </div>
-                {/* Category Nav */}
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-4 overflow-x-auto no-scrollbar">
+
+                {/* Mobile: single hero image */}
+                <div className="lg:hidden relative">
+                    <img
+                        src="/images/uptex-model-basket-2.jpg"
+                        alt="UpTex earrings model"
+                        className="w-full h-64 object-cover object-top"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-emerald-950 via-transparent to-transparent" />
+                </div>
+            </div>
+
+            {/* Category Nav */}
+            <div id="products" className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 sticky top-0 z-20 shadow-sm">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 overflow-x-auto no-scrollbar">
                     <div className="flex space-x-2 md:justify-center min-w-max">
                         {CATEGORIES.map((cat) => (
                             <button

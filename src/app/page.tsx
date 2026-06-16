@@ -265,6 +265,109 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ─── CREATIVE REVAMP! MARKETING SECTION ─── */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-emerald-950 via-emerald-900 to-teal-950 scroll-reveal-item">
+        {/* Decorative blobs */}
+        <div className="absolute top-0 left-0 w-96 h-96 bg-emerald-400/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-teal-400/10 rounded-full blur-3xl translate-x-1/2 translate-y-1/2 pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+            {/* LEFT: Two creative photos stacked/overlapping */}
+            <div className="relative flex justify-center lg:justify-start" style={{minHeight: "520px"}}>
+              {/* Main model portrait */}
+              <div className="relative z-10">
+                <img
+                  src="/images/uptex-model-closeup.jpg"
+                  alt="Model wearing UpTex green earrings and wristbands"
+                  className="w-72 h-[460px] object-cover object-top rounded-3xl shadow-2xl shadow-black/60 border-4 border-emerald-400/30"
+                />
+                {/* Floating "Made from Waste" chip */}
+                <div className="absolute -top-4 -left-4 bg-emerald-400 text-emerald-950 px-4 py-2 rounded-2xl shadow-lg rotate-[-3deg]">
+                  <p className="text-[10px] font-black uppercase tracking-widest">Made From Waste</p>
+                  <p className="text-sm font-black">🍃 PET + HDPE</p>
+                </div>
+              </div>
+              {/* Second earring display photo — offset bottom-right */}
+              <div className="absolute bottom-0 right-0 lg:right-8 z-20">
+                <img
+                  src="/images/uptex-model-display-1.jpg"
+                  alt="Model holding UpTex earring display card"
+                  className="w-52 h-72 object-cover object-top rounded-2xl shadow-2xl shadow-black/40 border-2 border-white/20 rotate-[3deg]"
+                />
+                {/* Price tag chip */}
+                <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-white text-emerald-900 px-5 py-2 rounded-full shadow-xl">
+                  <p className="font-black text-sm whitespace-nowrap">From ₦2,500 ✦</p>
+                </div>
+              </div>
+            </div>
+
+            {/* RIGHT: Marketing copy */}
+            <div className="pt-8 lg:pt-0">
+              <span className="inline-block text-[11px] font-black uppercase tracking-widest text-emerald-400 bg-emerald-400/10 border border-emerald-400/20 px-4 py-1.5 rounded-full mb-6">
+                ✦ ReVamp! Boutique — Why Buy From Us?
+              </span>
+
+              <h2 className="text-4xl md:text-5xl font-black text-white tracking-tight leading-tight mb-6">
+                Your Earrings Were
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-300">
+                  Someone's Trash.
+                </span>
+              </h2>
+
+              <p className="text-emerald-100/75 text-lg leading-relaxed mb-8 font-medium">
+                Every item in the ReVamp! Store is handcrafted by women in Abuja's informal settlements 
+                from plastic waste recovered before it reached your local drain. You're not just buying jewellery — 
+                you're buying a traceable circular act.
+              </p>
+
+              {/* Feature list */}
+              <div className="space-y-4 mb-10">
+                {[
+                  { icon: "♻️", label: "100% Upcycled", sub: "Zero virgin plastic. Every earring, bead & wristband is recovered PET/HDPE." },
+                  { icon: "🔍", label: "Full Traceability", sub: "Search your order ID and see exactly which hub collected it & who crafted it." },
+                  { icon: "💚", label: "Community Impact", sub: "Profits fund women-led hubs in Kuchingoro & Durumi. You pay, they earn." },
+                  { icon: "🎨", label: "Natural Colours Only", sub: "No artificial dyes — colours come directly from sorted plastic pigmentation." },
+                ].map(f => (
+                  <div key={f.label} className="flex items-start gap-4 group">
+                    <span className="text-2xl mt-0.5 shrink-0">{f.icon}</span>
+                    <div>
+                      <span className="font-black text-white block text-sm group-hover:text-emerald-400 transition-colors">{f.label}</span>
+                      <span className="text-emerald-200/55 text-xs leading-relaxed">{f.sub}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Price badges */}
+              <div className="flex flex-wrap gap-3 mb-8">
+                {[
+                  { name: "Wristbeads", price: "₦1,500" },
+                  { name: "Earrings", price: "₦2,500" },
+                  { name: "Palette Set", price: "₦5,000" },
+                  { name: "Loop Game", price: "₦7,000" },
+                ].map(p => (
+                  <div key={p.name} className="bg-white/10 border border-white/20 rounded-xl px-4 py-2">
+                    <span className="text-[10px] text-emerald-300/70 font-bold block uppercase tracking-widest">{p.name}</span>
+                    <span className="text-white font-black text-sm">{p.price}</span>
+                  </div>
+                ))}
+              </div>
+
+              <Link
+                href="/store"
+                className="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-white font-black px-8 py-4 rounded-2xl transition-all hover:scale-[1.02] shadow-lg shadow-emerald-500/30 text-base"
+              >
+                Shop the ReVamp! Collection
+                <ArrowRight className="h-5 w-5" />
+              </Link>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
       {/* Funders & Sponsors */}
       <section className="bg-gray-100/50 py-16 border-t border-gray-200/50 scroll-reveal-item">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
